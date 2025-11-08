@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Skin Bị Ảo Khi Dùng Unlock</title>
+    <style>
+         :root {
+            --bg: #0e1422;
+            --text: #b6f3d3;
+            --accent: #00e88f;
+        }
+        
+        body {
+            margin: 0;
+            height: 100vh;
+            background: var(--bg);
+            color: var(--text);
+            font-family: "Fira Code", "JetBrains Mono", monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .terminal {
+            background: #111827;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+            width: 90%;
+            max-width: 700px;
+            height: 85vh;
+            /* thêm giới hạn chiều cao để có scroll */
+            padding: 20px 30px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .mac {
+            position: absolute;
+            top: 12px;
+            left: 14px;
+            display: flex;
+            gap: 8px;
+        }
+        
+        .mac span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .red {
+            background: #ff5f56;
+        }
+        
+        .yellow {
+            background: #ffbd2e;
+        }
+        
+        .green {
+            background: #27c93f;
+        }
+        /* Giảm size title cho “note” */
+        
+        .title {
+            text-align: center;
+            margin-top: 18px;
+            font-weight: 600;
+            font-size: 14px;
+            /* nhỏ lại */
+            color: var(--accent);
+            letter-spacing: 0.4px;
+            text-shadow: 0 0 6px rgba(0, 232, 143, 0.25);
+        }
+        
+        pre {
+            margin-top: 30px;
+            font-size: 15px;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-y: auto;
+            /* có thể cuộn */
+            flex: 1;
+            /* chiếm toàn bộ phần còn lại */
+            padding-right: 10px;
+        }
+        
+        pre::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        pre::-webkit-scrollbar-thumb {
+            background: rgba(0, 232, 143, 0.25);
+            border-radius: 4px;
+        }
+        
+        .line {
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(5px);
+            animation: fadeInUp 0.4s forwards;
+        }
+        
+        .arrow {
+            color: var(--accent);
+            margin-right: 10px;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background: var(--accent);
+            margin-left: 4px;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="terminal">
+        <div class="mac">
+            <span class="red"></span>
+            <span class="yellow"></span>
+            <span class="green"></span>
+        </div>
+
+        <div class="title">List Skin Bị Ảo Khi Dùng Unlock</div>
+        <pre id="output"></pre>
+    </div>
+
+    <script>
+        const skins = [
+            "Nakroth Bạch Diện Chiến Thương",
+            "Nakroth Siêu Việt",
+            "Nakroth Quỷ Thương Liệt Đế",
+            "Airi Bích Hải Thánh Nữ",
+            "Lauriel Thứ Nguyên Vệ Thần",
+            "Violet Thần Long Tỉ Tỉ",
+            "Violet Huyết Ma Thần",
+            "Violet Vọng Nguyệt Long Cơ",
+            "Violet Vợ Người Ta",
+            "Veera Thất Sát - Thượng Sinh",
+            "Ngộ Không Thần Giáp Xích Diễm",
+            "Ngộ Không Nhóc Tỳ Bá Đạo",
+            "Ngộ Không Tân Niên Võ Thần",
+            "Ilumia Lưỡng Nghi Long Hậu",
+            "Hayate Tu Di Thánh Đế",
+            "Krixi Phù Thuỷ Thời Không",
+            "Krixi Tatsumaki Lốc Xoáy Kinh Hoàng",
+            "Tulen Thần Sứ ST.L-79",
+            "Tulen Chí Tôn Kiếm Tiên",
+            "Butterfly Bình Minh Tận Thế",
+            "Butterfly Phượng Cửu Thiên",
+            "Valhein Xạ Thần Kagutsuchi",
+            "Aya Công Chúa Cầu Vồng",
+            "Capheny Càn Nguyên Điện Chủ",
+            "Billow Thiên Tướng - Độ Ách",
+            "Baron Thiên Phủ - Tư Mệnh",
+            "Pain Megumi Fushiguro",
+            "Violet Nobara Kugisaki",
+            "Murad Tuyệt Thế Thần Binh",
+            "Tel'Annas Lân Quang Thánh Điệu",
+            "Tel'Annas Tân Niên Vệ Thần",
+            "Tel'Annas Thần Sứ F.E.E-X1",
+            "Airi Bích Hải Thánh Nữ",
+            "Raz Bão Vũ Cuồng Lôi",
+            "Veres Lưu Ly Long Mẫu",
+            "Bijan Lữ Hành Thời Không",
+            "Yorn Conan Edogawa",
+            "Hayate Siêu Đạo Chích Kid",
+            "Stuart Siêu Trùm Phản Diện",
+            "Eland'orr Mộng Giới Yêu Chủ",
+            "Erin Nguyệt Ảnh Minh Điệp",
+            "Qi Milim Nava",
+            "Iggy Rimuru",
+        ];
+
+        const output = document.getElementById("output");
+
+        async function typeLine(text, delay = 1.0) {
+            return new Promise(resolve => {
+                const line = document.createElement("div");
+                line.className = "line";
+                line.innerHTML = `<span class="arrow">➜</span><span class="text"></span>`;
+                output.appendChild(line);
+
+                const textEl = line.querySelector(".text");
+                let i = 0;
+
+                const typing = setInterval(() => {
+                    textEl.textContent = text.slice(0, i++);
+                    output.scrollTop = output.scrollHeight; // luôn auto cuộn xuống khi gõ
+                    if (i > text.length) {
+                        clearInterval(typing);
+                        resolve();
+                    }
+                }, delay);
+            });
+        }
+
+        async function start() {
+            for (let i = 0; i < skins.length; i++) {
+                await typeLine(skins[i]);
+                await new Promise(r => setTimeout(r, 15));
+            }
+            const cursor = document.createElement("span");
+            cursor.className = "cursor";
+            output.appendChild(cursor);
+        }
+
+        start();
+    </script>
+</body>
+
+</html>
