@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>AOV Cheat</title>
+  <!-- Favicon -->
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/App_Store_%28iOS%29.svg/1024px-App_Store_%28iOS%29.svg.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/App_Store_%28iOS%29.svg/1024px-App_Store_%28iOS%29.svg.png" type="image/x-icon" />
+  <style>
+    :root{
+      --blue:#2d8cff;
+      --bg:#f6f7f9;
+      --muted:#6b7280;
+      --card:#fff;
+      --text:#0b1220;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:-apple-system, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+
+    /* Top appbar */
+    .appbar{position:sticky;top:0;background:#fff;border-bottom:1px solid #e9e9e9;z-index:40;backdrop-filter: blur(6px)}
+    .appbar-inner{max-width:980px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px}
+    .appstore-icon{height:22px;opacity:.96}
+    .appbar-title{font-weight:700;font-size:18px}
+
+    /* Container */
+    .container{max-width:980px;margin:0 auto;padding:16px 16px 90px}
+
+    /* Hero section: icon + info */
+    .hero{display:flex;gap:14px;align-items:flex-start;margin-bottom:18px}
+    .app-icon-wrap{width:92px;height:92px;border-radius:22px;background:var(--card);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(12,24,48,0.06)}
+    .app-icon{width:86px;height:86px;border-radius:18px;object-fit:cover}
+    .hero-right{flex:1}
+    .title-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .title{font-size:22px;margin:0;font-weight:800}
+    .badge{background:#efefef;padding:4px 8px;border-radius:8px;font-size:12px;font-weight:700;color:#333}
+    .developer{color:var(--muted);margin:6px 0;font-weight:600}
+    .meta{color:var(--muted);margin-bottom:12px}
+
+    /* Buttons */
+    .actions{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-block;padding:10px 18px;border-radius:22px;font-weight:800;text-align:center}
+    .btn.primary{background:var(--blue);color:#fff;box-shadow:0 6px 18px rgba(45,140,255,0.18)}
+    .btn.ghost{background:transparent;border:2px solid rgba(45,140,255,0.12);color:var(--blue)}
+    .btn.danger{background: #f00;color: #fff;box-shadow: 0 6px 18px rgba(255, 0, 0, 0.18);}
+
+.btn.rainbow-fill {
+    background-image: linear-gradient(
+        90deg, 
+        #ff0000,   /* Đỏ */
+        #ff7f00,   /* Cam */
+        #ffff00,   /* Vàng */
+        #00ff00,   /* Xanh lá */
+        #0000ff,   /* Xanh dương */
+        #4b0082,   /* Chàm */
+        #9400d3    /* Tím */
+    );
+    color: white; 
+    
+    background-size: 400% 100%;
+    animation: rainbow-shift-fill 4s linear infinite;
+    
+    border-radius: 22px;   
+    padding: 10px 18px;
+    font-weight: 800; 
+}
+
+@keyframes rainbow-shift-fill {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+    /* Section headings */
+    .section{background:transparent;padding:18px 0;border-top:1px solid #ececec}
+    .section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    .section-head h2{margin:0;font-size:18px;color:var(--text);font-weight:800}
+    .platforms a{margin-left:12px;color:var(--blue);font-weight:700}
+
+    /* Screenshot list (horizontal scroll) */
+    .screenshot-list{display:flex;gap:14px;overflow-x:auto;padding:10px 2px 20px 2px;list-style:none;margin:0;-webkit-overflow-scrolling:touch}
+    .screenshot-list li{flex:0 0 auto;width:82%;max-width:640px}
+    .screenshot-list img{width:100%;height:auto;border-radius:16px;box-shadow:0 14px 36px rgba(14,22,40,0.12);display:block;object-fit:cover}
+
+    /* Big blue gallery heading with shadow */
+    .gallery-heading{
+      font-size:30px;
+      line-height:1.04;
+      text-align:center;
+      color:var(--blue);
+      font-weight:900;
+      margin:22px 0 12px;
+      text-shadow: 0 8px 0 rgba(0,0,0,0.03), 0 12px 22px rgba(45,140,255,0.12);
+      padding:0 8px;
+    }
+
+    /* Horizontal gallery (swipe) - instruction screenshots */
+    .gallery-scroll{display:flex;gap:12px;overflow-x:auto;padding:12px 6px 20px 6px;-webkit-overflow-scrolling:touch}
+.gallery-scroll img{
+  flex:0 0 82%;
+  max-height:420px;         /* Giới hạn chiều cao ảnh */
+  width:auto;
+  border-radius:14px;
+  box-shadow:0 16px 40px rgba(10,20,40,0.12);
+  object-fit:contain;       /* Hiển thị đủ ảnh, không crop */
+  background:#fff;          /* nền trắng nếu ảnh nhỏ hơn khung */
+}
+
+
+    /* Whats new / demo image */
+    .whats-new{padding:6px 0 0 0}
+    .whats-new-title{font-weight:800;text-align:center;color:#203040;margin:8px 0 12px}
+    .demo-image{width:100%;border-radius:12px;border:1px solid #eee;box-shadow:0 12px 32px rgba(8,18,36,0.08);display:block}
+
+    /* Text blocks */
+    .lead-text{color:var(--muted);line-height:1.6}
+    .muted-list{margin:8px 0 0 0;color:var(--muted);line-height:1.6}
+
+    /* Footer */
+    .footer{padding:20px 0;text-align:center;color:var(--muted);font-weight:600}
+    .footer a{color:#ff6a00;text-decoration:none;font-weight:800}
+
+    /* Small screens tweaks */
+    @media (max-width:420px){
+      .title{font-size:20px}
+      .gallery-heading{font-size:26px}
+      .screenshot-list li{width:86%}
+      .gallery-scroll img{flex:0 0 86%}
+    }
+
+    /* Desktop */
+    @media (min-width:900px){
+      .container{padding:28px}
+      .hero{align-items:center}
+      .screenshot-list li{width:33%}
+      .gallery-scroll img{flex:0 0 32%}
+      .gallery-heading{font-size:36px}
+    }
+
+    /* subtle iphone-style rounded bottom toolbar space */
+    .bottom-space{height:72px}
+  </style>
+</head>
+<body>
+  <header class="appbar">
+    <div class="appbar-inner">
+      <!-- icon app store -->
+      <img class="appstore-icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/App_Store_%28iOS%29.svg/1024px-App_Store_%28iOS%29.svg.png" alt="App Store">
+      <span class="appbar-title">App Store</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Noti -->
+    <section class="hero" aria-label="Thông tin ứng dụng">
+      <div class="app-icon-wrap">
+        <!-- Icon app -->
+        <img class="app-icon" src="https://files.catbox.moe/vm3r0d.gif" alt="Icon">
+      </div>
+
+      <div class="hero-right">
+        <div class="title-row">
+          <h1 class="title">666 Cheat VN New</h1>
+          <div class="badge"></div>
+        </div>
+
+        <div class="developer"></div>
+        <div class="meta"><span>Paid</span> · <span>8/11/2025</span></div>
+
+        <div class="actions">
+          <!-- Link button -->
+          <a class="btn primary" href="https://dl.dropboxusercontent.com/scl/fi/4b3gm76xkjzhvfh5l3icw/666-Cheat-Final.ipa?rlkey=p361lsajbxjvr1ly674gdzr85&st=lb7sb9xb&dl=0">Tải IPA </a>
+          <a class="btn rainbow-fill" href="https://install.cheatlibrary.xyz/luuy.html" target="_blank">Lưu Ý !</a>
+          <a class="btn danger" href="https://install.cheatlibrary.xyz/skinao.html" target="_blank">List Skin Ảo Khi Dùng Unlock ⚠️</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Review -->
+    <section class="section screenshots" aria-label="Screenshot">
+      <div class="section-head">
+        <h2>Xem Trước</h2>
+        <div class="platforms"><a class="active">iPhone</a> <a></a></div>
+      </div>
+
+      <ul class="screenshot-list" role="list">
+        <!-- Ảnh Review -->
+        <li><img src="img/aim.jpg" alt="AIM"></li>
+        <li><img src="img/main.jpg" alt="MAIN"></li>
+        <li><img src="img/mod.jpg" alt="MOD"></li>
+        <li><img src="img/autosell.jpg" alt="AUTOSELL"></li>
+      </ul>
+    </section>
+    <p class="lead-text">Chạm vào icon để mở menu, Không khuyén khích chơi lộ<p>
+<br> ➜ AntiBan Vip ✅
+
+<br> ➜ .ᐟ Log Song Song Nổ Gốc Tự Động Chống Tố
+      
+<br> ➜ .ᐟ Hack Full Map, Cam Xa Tùy Chỉnh, Fake Tên Trong Trận
+
+<br> ➜ .ᐟ Aim Full Tướng, Bug Skill
+
+<br> ➜ .ᐟ Unlock All Skin, Mod Rank, Nút Bấm, TB Hạ, Mod Sảnh
+
+<br> ➜ .ᐟ Auto Mua Bán Đồ Vip
+    <!-- Tin cậy -->
+    <section class="section gallery-instructions">
+      <div class="gallery-heading">Hướng Dẫn Tin Cậy</div>
+
+      <div class="gallery-scroll" aria-hidden="false">
+        <!-- tin cậy -->
+        <img src="https://i.imgur.com/56TqnFh.png" alt="Hướng dẫn 1">
+        <img src="https://i.imgur.com/ZiXN2n7.png" alt="Hướng dẫn 2">
+        <img src="https://i.imgur.com/5KIIyuG.png" alt="Hướng dẫn 3">
+      </div>
+    </section>
+
+<!-- cách dùng -->
+<section class="section whats-new">
+  <h3 class="whats-new-title">Hướng Dẫn Sử Dụng</h3>
+  
+  <!-- Video YouTube -->
+  <div class="video-wrapper">
+    <iframe 
+      width="100%" 
+      height="315" 
+      src="https://www.youtube.com/embed/qx78YiCak6Q"
+      title="YouTube video player" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <p class="lead-text muted-list">
+    Phiên bản 1.60.1<br>
+  </p>
+</section>
+
+
+    <!-- PRIVACY & INFO -->
+    <section class="section">
+      <h2>Quyền Riêng Tư Của Ứng Dụng</h2>
+      <p class="lead-text">Nhà phát triển <strong>tuiducios.xyz </strong> đã cho biết rằng phương thức đảm bảo quyền riêng tư của ứng dụng có thể bao gồm việc xử lý dữ liệu như được mô tả ở bên dưới. Để biết thêm thông tin, hãy xem chính sách quyền riêng tư của nhà phát triển.</p>
+
+      <h3 style="margin-top:18px;font-weight:800">Thông Tin</h3>
+      <p class="muted-list"><strong>Nhà cung cấp</strong><br>tuiducios</p>
+      <p class="muted-list"><strong>Kích cỡ</strong><br>196,6 MB</p>
+      <p class="muted-list"><strong>Danh mục</strong><br>Trò chơi</p>
+    </section>
+
+    <footer class="footer">
+      <p>© 2025 <a href="https://Cheatlibrary.xyz/">Cheatlibrary.xyz</a>. All rights reserved.</p>
+    </footer>
+
+    <div class="bottom-space" aria-hidden="true"></div>
+  </main>
+
+  <script>
+    // JS nhỏ: khi click platform iPhone/iPad thì chỉ toggle class 
+    document.querySelectorAll('.platforms a').forEach((el, i) => {
+      el.addEventListener('click', function(e){
+        e.preventDefault();
+        document.querySelectorAll('.platforms a').forEach(a => a.style.opacity=0.6);
+        el.style.opacity = 1;
+      });
+    });
+
+    // Thêm "snap" mượt cho gallery trên iOS
+    document.querySelectorAll('.screenshot-list, .gallery-scroll').forEach(el=>{
+      el.style.scrollSnapType = 'x mandatory';
+      Array.from(el.querySelectorAll('img, li')).forEach(item=>{
+        item.style.scrollSnapAlign = 'center';
+      });
+    });
+  </script>
+</body>
+</html>
