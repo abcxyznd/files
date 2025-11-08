@@ -34,50 +34,15 @@
     </div>
 
     <script>
-        const skins = [
-            "Nakroth Bạch Diện Chiến Thương",
-            "Nakroth Siêu Việt",
-            "Nakroth Quỷ Thương Liệt Đế",
-            "Airi Bích Hải Thánh Nữ",
-            "Lauriel Thứ Nguyên Vệ Thần",
-            "Violet Thần Long Tỉ Tỉ",
-            "Violet Huyết Ma Thần",
-            "Violet Vọng Nguyệt Long Cơ",
-            "Violet Vợ Người Ta",
-            "Veera Thất Sát - Thượng Sinh",
-            "Ngộ Không Thần Giáp Xích Diễm",
-            "Ngộ Không Nhóc Tỳ Bá Đạo",
-            "Ngộ Không Tân Niên Võ Thần",
-            "Ilumia Lưỡng Nghi Long Hậu",
-            "Hayate Tu Di Thánh Đế",
-            "Krixi Phù Thuỷ Thời Không",
-            "Krixi Tatsumaki Lốc Xoáy Kinh Hoàng",
-            "Tulen Thần Sứ ST.L-79",
-            "Tulen Chí Tôn Kiếm Tiên",
-            "Butterfly Bình Minh Tận Thế",
-            "Butterfly Phượng Cửu Thiên",
-            "Valhein Xạ Thần Kagutsuchi",
-            "Aya Công Chúa Cầu Vồng",
-            "Capheny Càn Nguyên Điện Chủ",
-            "Billow Thiên Tướng - Độ Ách",
-            "Baron Thiên Phủ - Tư Mệnh",
-            "Pain Megumi Fushiguro",
-            "Violet Nobara Kugisaki",
-            "Murad Tuyệt Thế Thần Binh",
-            "Tel'Annas Lân Quang Thánh Điệu",
-            "Tel'Annas Tân Niên Vệ Thần",
-            "Tel'Annas Thần Sứ F.E.E-X1",
-            "Airi Bích Hải Thánh Nữ",
-            "Raz Bão Vũ Cuồng Lôi",
-            "Veres Lưu Ly Long Mẫu",
-            "Bijan Lữ Hành Thời Không",
-            "Yorn Conan Edogawa",
-            "Hayate Siêu Đạo Chích Kid",
-            "Stuart Siêu Trùm Phản Diện",
-            "Eland'orr Mộng Giới Yêu Chủ",
-            "Erin Nguyệt Ảnh Minh Điệp",
-            "Qi Milim Nava",
-            "Iggy Rimuru",
+        const cert = [
+            "Bên mình hiện tại không có link cài đặt trực tiếp mà chỉ hỗ trợ cài đặt IPA thông qua chứng chỉ",
+             "Vậy chứng chỉ là gì ❓",
+             "Chứng chỉ thường dùng để ký và cài đặt các file có đuôi .ipa dành cho các dòng máy IOS như iphone, ipad,..."
+             "Chứng chỉ sẽ được chia ra làm 2 loại:"
+             "1. Chứng chỉ free: Đây là dạng chứng chỉ của các doanh nghiệp mà các bạn có thể dễ dàng tìm thấy và cài đặt miễn phí. Nhưng nhược điểm lớn nhất là dễ bị thu hồi (revoke), và các bạn chỉ có thể sử dụng trong 1 tuần hoặc 2, 3 tuần đổ lại",
+             "- Nó cũng sẽ có nguy cơ làm cho máy của các bạn dính blacklist (Apple Ban)",
+             "2. Chứng chỉ cá nhân: Đây là dạng chứng chỉ được Apple cấp riêng cho mỗi udid máy nên các bạn có thể sài thoải mái mà không sợ bị thu hồi !, chỉ từ 100k/năm ✅",
+             "-Ưu điểm: Sài thoải mái không lo thu hồi, nếu có sẽ được bảo hành 1 đổi 1. Dễ dàng cài đặt, cùng với đó các bạn có thể cài đặt các app crack hay nhân bản app không giới hạn ✅",   
         ];
 
         const output = document.getElementById("output");
@@ -104,8 +69,8 @@
         }
 
         async function start() {
-            for (let i = 0; i < skins.length; i++) {
-                await typeLine(skins[i]);
+            for (let i = 0; i < cert.length; i++) {
+                await typeLine(cert[i]);
                 await new Promise(r => setTimeout(r, 15));
             }
             const cursor = document.createElement("span");
