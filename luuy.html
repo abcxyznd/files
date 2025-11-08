@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List Skin Bị Ảo Khi Dùng Unlock</title>
+    <title>Lưu ý !!</title>
     <style>
          :root {
             --bg: #0e1422;
@@ -29,121 +29,7 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
             width: 90%;
             max-width: 700px;
-            height: 85vh;
-            /* thêm giới hạn chiều cao để có scroll */
-            padding: 20px 30px;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .mac {
-            position: absolute;
-            top: 12px;
-            left: 14px;
-            display: flex;
-            gap: 8px;
-        }
-        
-        .mac span {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-        
-        .red {
-            background: #ff5f56;
-        }
-        
-        .yellow {
-            background: #ffbd2e;
-        }
-        
-        .green {
-            background: #27c93f;
-        }
-        /* Giảm size title cho “note” */
-        
-        .title {
-            text-align: center;
-            margin-top: 18px;
-            font-weight: 600;
-            font-size: 14px;
-            /* nhỏ lại */
-            color: var(--accent);
-            letter-spacing: 0.4px;
-            text-shadow: 0 0 6px rgba(0, 232, 143, 0.25);
-        }
-        
-        pre {
-            margin-top: 30px;
-            font-size: 15px;
-            line-height: 1.8;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            overflow-y: auto;
-            /* có thể cuộn */
-            flex: 1;
-            /* chiếm toàn bộ phần còn lại */
-            padding-right: 10px;
-        }
-        
-        pre::-webkit-scrollbar {
-            width: 6px;
-        }
-        
-        pre::-webkit-scrollbar-thumb {
-            background: rgba(0, 232, 143, 0.25);
-            border-radius: 4px;
-        }
-        
-        .line {
-            display: flex;
-            align-items: center;
-            opacity: 0;
-            transform: translateY(5px);
-            animation: fadeInUp 0.4s forwards;
-        }
-        
-        .arrow {
-            color: var(--accent);
-            margin-right: 10px;
-        }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .cursor {
-            display: inline-block;
-            width: 8px;
-            height: 16px;
-            background: var(--accent);
-            margin-left: 4px;
-            animation: blink 1s infinite;
-        }
-        
-        @keyframes blink {
-            50% {
-                opacity: 0;
-            }
-        }
-    </style>
-</head>
-
-<body>
-    <div class="terminal">
-        <div class="mac">
-            <span class="red"></span>
-            <span class="yellow"></span>
-            <span class="green"></span>
-        </div>
-
-        <div class="title">List Skin Bị Ảo Khi Dùng Unlock</div>
+            height: 85vhĐặt</div>
         <pre id="output"></pre>
     </div>
 
