@@ -1,287 +1,447 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>AOV Cheat</title>
-  <!-- Favicon -->
-    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/App_Store_%28iOS%29.svg/1024px-App_Store_%28iOS%29.svg.png" type="image/x-icon" />
-    <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/App_Store_%28iOS%29.svg/1024px-App_Store_%28iOS%29.svg.png" type="image/x-icon" />
-  <style>
-    :root{
-      --blue:#2d8cff;
-      --bg:#f6f7f9;
-      --muted:#6b7280;
-      --card:#fff;
-      --text:#0b1220;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:-apple-system, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased}
-    a{color:inherit;text-decoration:none}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>666Cheat LQMB</title>
+    <style>
+        /* --- Cài đặt cơ bản --- */
+        * {
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
 
-    /* Top appbar */
-    .appbar{position:sticky;top:0;background:#fff;border-bottom:1px solid #e9e9e9;z-index:40;backdrop-filter: blur(6px)}
-    .appbar-inner{max-width:980px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px}
-    .appstore-icon{height:22px;opacity:.96}
-    .appbar-title{font-weight:700;font-size:18px}
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #000;
+            color: #f2f2f7;
+            margin: 0;
+            padding: 0;
+        }
 
-    /* Container */
-    .container{max-width:980px;margin:0 auto;padding:16px 16px 90px}
+        .mobile-container {
+            background-color: #000; /* Nền đen như ảnh */
+            min-height: 100vh;
+        }
 
-    /* Hero section: icon + info */
-    .hero{display:flex;gap:14px;align-items:flex-start;margin-bottom:18px}
-    .app-icon-wrap{width:92px;height:92px;border-radius:22px;background:var(--card);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(12,24,48,0.06)}
-    .app-icon{width:86px;height:86px;border-radius:18px;object-fit:cover}
-    .hero-right{flex:1}
-    .title-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-    .title{font-size:22px;margin:0;font-weight:800}
-    .badge{background:#efefef;padding:4px 8px;border-radius:8px;font-size:12px;font-weight:700;color:#333}
-    .developer{color:var(--muted);margin:6px 0;font-weight:600}
-    .meta{color:var(--muted);margin-bottom:12px}
+        /* --- Thanh điều hướng (Header) cho phần nâu --- */
+        .brown-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            color: #0d84fe; /* Màu xanh đặc trưng của iOS */
+            background-color: #5d493a; /* Nền màu nâu */
+            position: relative; /* Để profile pic có thể được định vị */
+        }
 
-    /* Buttons */
-    .actions{display:flex;gap:10px;flex-wrap:wrap}
-    .btn{display:inline-block;padding:10px 18px;border-radius:22px;font-weight:800;text-align:center}
-    .btn.primary{background:var(--blue);color:#fff;box-shadow:0 6px 18px rgba(45,140,255,0.18)}
-    .btn.ghost{background:transparent;border:2px solid rgba(45,140,255,0.12);color:var(--blue)}
-    .btn.danger{background: #f00;color: #fff;box-shadow: 0 6px 18px rgba(255, 0, 0, 0.18);}
-    .btn.green{background:#81C784;border:2px solid #4CAF50;color:white;border-radius:22px}
+        .nav-icon.back {
+            font-size: 28px;
+            font-weight: 300;
+            cursor: pointer;
+        }
 
-.btn.rainbow-fill {
-    background-image: linear-gradient(
-        90deg, 
-        #ff0000,   /* Đỏ */
-        #ff7f00,   /* Cam */
-        #ffff00,   /* Vàng */
-        #00ff00,   /* Xanh lá */
-        #0000ff,   /* Xanh dương */
-        #4b0082,   /* Chàm */
-        #9400d3    /* Tím */
-    );
-    color: white; 
-    
-    background-size: 400% 100%;
-    animation: rainbow-shift-fill 4s linear infinite;
-    
-    border-radius: 22px;   
-    padding: 10px 18px;
-    font-weight: 800; 
-}
+        .nav-icon.share {
+            font-size: 24px;
+            cursor: pointer;
+            width: 34px;
+            height: 34px;
+            text-align: center;
+            line-height: 34px;
+        }
 
-@keyframes rainbow-shift-fill {
-    0% {
-        background-position: 0% 50%;
-    }
-    100% {
-        background-position: 100% 50%;
-    }
-}
+        .nav-title {
+            color: #f2f2f7;
+            font-weight: 600;
+            font-size: 17px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
 
-    /* Section headings */
-    .section{background:transparent;padding:18px 0;border-top:1px solid #ececec}
-    .section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-    .section-head h2{margin:0;font-size:18px;color:var(--text);font-weight:800}
-    .platforms a{margin-left:12px;color:var(--blue);font-weight:700}
+        .profile-pic {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.1);
+            position: absolute;
+            right: 50px; /* Đặt bên cạnh nút share */
+            top: 10px;
+        }
 
-    /* Screenshot list (horizontal scroll) */
-    .screenshot-list{display:flex;gap:14px;overflow-x:auto;padding:10px 2px 20px 2px;list-style:none;margin:0;-webkit-overflow-scrolling:touch}
-    .screenshot-list li{flex:0 0 auto;width:82%;max-width:640px}
-    .screenshot-list img{width:100%;height:auto;border-radius:16px;box-shadow:0 14px 36px rgba(14,22,40,0.12);display:block;object-fit:cover}
+        /* --- Thông tin ứng dụng (Cài đặt) - Phần nâu --- */
+        .app-install-brown-background {
+            background-color: #5d493a; /* Nền màu nâu */
+            padding-bottom: 20px; /* Tạo khoảng trống dưới nút cài đặt */
+        }
 
-    /* Big blue gallery heading with shadow */
-    .gallery-heading{
-      font-size:30px;
-      line-height:1.04;
-      text-align:center;
-      color:var(--blue);
-      font-weight:900;
-      margin:22px 0 12px;
-      text-shadow: 0 8px 0 rgba(0,0,0,0.03), 0 12px 22px rgba(45,140,255,0.12);
-      padding:0 8px;
-    }
+        .app-install {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 15px 0 15px; /* Điều chỉnh padding */
+            text-align: center;
+        }
 
-    /* Horizontal gallery (swipe) - instruction screenshots */
-    .gallery-scroll{display:flex;gap:12px;overflow-x:auto;padding:12px 6px 20px 6px;-webkit-overflow-scrolling:touch}
-.gallery-scroll img{
-  flex:0 0 82%;
-  max-height:420px;         /* Giới hạn chiều cao ảnh */
-  width:auto;
-  border-radius:14px;
-  box-shadow:0 16px 40px rgba(10,20,40,0.12);
-  object-fit:contain;       /* Hiển thị đủ ảnh, không crop */
-  background:#fff;          /* nền trắng nếu ảnh nhỏ hơn khung */
-}
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 22.5%; /* Bo góc kiểu iOS */
+            background-color: #333; /* Màu xám dự phòng nếu ảnh không tải được */
+            margin-bottom: 15px;
+            /* Đã cập nhật link ảnh icon */
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0g6HBipeoX3awNNaLOseSH-XdzXRtaU-j8g&s');
+            background-size: cover;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Thêm đổ bóng nhẹ */
+        }
 
+        .app-install h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            color: #fff;
+        }
 
-    /* Whats new / demo image */
-    .whats-new{padding:6px 0 0 0}
-    .whats-new-title{font-weight:800;text-align:center;color:#203040;margin:8px 0 12px}
-    .demo-image{width:100%;border-radius:12px;border:1px solid #eee;box-shadow:0 12px 32px rgba(8,18,36,0.08);display:block}
+        .install-button {
+            /* Thay thế #000 bằng rgba(0, 0, 0, 0.5) */
+            background-color: rgba(0, 0, 0, 0.5); /* Nền đen, 50% trong suốt */
+            color: white; /* Chữ trắng vẫn rõ 100% */
+            border: none;
+            border-radius: 90px;
+            padding: 20px 100px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            /* Đã xóa 'opacity: 0.5;' */
+        }
 
-    /* Text blocks */
-    .lead-text{color:var(--muted);line-height:1.6}
-    .muted-list{margin:8px 0 0 0;color:var(--muted);line-height:1.6}
+        /* --- Hộp tóm tắt 3 cột --- */
+        .summary-box {
+            display: flex;
+            justify-content: space-around;
+            background-color: #1c1c1e; /* Màu nền hộp */
+            border-radius: 12px;
+            padding: 15px 10px;
+            margin: 20px 15px 20px 15px; /* Margin 15px 2 bên sẽ giữ nó không bị dính sát mép */
+        }
 
-    /* Footer */
-    .footer{padding:20px 0;text-align:center;color:var(--muted);font-weight:600}
-    .footer a{color:#ff6a00;text-decoration:none;font-weight:800}
+        .summary-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-basis: 33%;
+        }
 
-    /* Small screens tweaks */
-    @media (max-width:420px){
-      .title{font-size:20px}
-      .gallery-heading{font-size:26px}
-      .screenshot-list li{width:86%}
-      .gallery-scroll img{flex:0 0 86%}
-    }
+        .summary-title {
+            font-size: 10px;
+            color: #8e8e93; /* Màu xám chữ nhỏ */
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
 
-    /* Desktop */
-    @media (min-width:900px){
-      .container{padding:28px}
-      .hero{align-items:center}
-      .screenshot-list li{width:33%}
-      .gallery-scroll img{flex:0 0 32%}
-      .gallery-heading{font-size:36px}
-    }
+        .summary-value {
+            font-size: 18px;
+            color: #fff;
+            margin-top: 8px;
+            font-weight: 600;
+        }
 
-    /* subtle iphone-style rounded bottom toolbar space */
-    .bottom-space{height:72px}
-  </style>
+        .summary-value .build {
+            color: #8e8e93;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        /* --- Các nhóm danh sách thông tin --- */
+        .list-group {
+            background-color: #1c1c1e;
+            border-radius: 12px;
+            margin: 20px 15px; /* Margin 15px 2 bên sẽ giữ nó không bị dính sát mép */
+            overflow: hidden;
+            padding: 10px 10px;
+
+        }
+
+        .list-group h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+            padding: 15px 15px 5px 15px;
+            margin: 0;
+        }
+
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 15px;
+            border-bottom: 1px solid #38383a; /* Đường kẻ mờ */
+            min-height: 44px; /* Chiều cao chuẩn của iOS */
+        }
+
+        .list-group .list-item:last-child {
+            border-bottom: none;
+        }
+        
+        .list-group.no-header {
+             padding-top: 0;
+        }
+        
+        .list-group.no-header .list-item:first-child {
+            border-top: none;
+        }
+
+        .list-item .key {
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .list-item .value {
+            color: #8e8e93; /* Màu xám cho giá trị */
+            font-size: 16px;
+        }
+
+        .list-item .value.link {
+            color: #0d84fe; /* Màu xanh cho link */
+            text-decoration: none;
+        }
+
+        .list-item .value.arrow {
+            font-size: 20px;
+            color: #3c3c43;
+            font-weight: 600;
+        }
+
+        /* --- CSS CHO SLIDER ẢNH --- */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            margin: 0 auto; /* Đã xóa margin-top */
+            overflow: hidden; /* Đây là chìa khoá để ẩn các ảnh khác */
+            border-radius: 8px; /* Bo góc cho slider */
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out; 
+        }
+
+        .slide {
+            width: 100%;
+            flex-shrink: 0;
+            display: block;
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            margin: 0 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dot.active {
+            background-color: #fff;
+        }
+        
+        /* * ==================================
+         * CSS MỚI CHO BỐ CỤC RESPONSIVE
+         * ==================================
+        */
+        .responsive-wrapper {
+            display: flex;
+            flex-direction: column; /* Mặc định: xếp chồng */
+        }
+
+        /* CSS cho hộp slider mới */
+        .slider-box-override {
+            padding: 0; /* Ghi đè padding: 10px 10px */
+        }
+        .slider-box-override .slider-container {
+            border-radius: 12px; /* Đảm bảo slider cũng bo góc */
+        }
+
+        /* Khi màn hình đủ rộng (ví dụ: > 768px) */
+        @media (min-width: 768px) {
+            .responsive-wrapper {
+                flex-direction: row; /* Chuyển sang xếp hàng ngang */
+                margin: 0 15px; /* Đặt margin bên ngoài cho cả nhóm */
+                gap: 20px; /* Khoảng cách 20px giữa 2 hộp */
+            }
+
+            .responsive-wrapper > .list-group {
+                margin: 20px 0; /* Xóa margin ngang, giữ margin dọc */
+                flex: 1 1 50%; /* Mỗi hộp chiếm 50% và tự dãn */
+            }
+        }
+
+    </style>
 </head>
 <body>
-  <header class="appbar">
-    <div class="appbar-inner">
-      <!-- icon app store -->
-      <img class="appstore-icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/App_Store_%28iOS%29.svg/1024px-App_Store_%28iOS%29.svg.png" alt="App Store">
-      <span class="appbar-title">App Store</span>
+
+    <div class="mobile-container">
+        
+        <div class="app-install-brown-background">
+            <header class="brown-section-header">
+                <span class="nav-icon back"></span>
+                <span class="nav-title">666 LQM</span>
+                <img src="https://play-lh.googleusercontent.com/u-HxG-Q1fEpAL9w96iIEaBR0iQOY8yeqDuDvhUTr_J98nfOuAAa7S0B0nkAc0ROnnh555Qp2XYBqbN2FsvyN6p4=w240-h480-rw" alt="Profile" class="profile-pic">
+                <span class="nav-icon share">⇪</span>
+            </header>
+
+            <section class="app-install">
+                <div class="app-icon"></div>
+                <h1>666 Cheats LQMB</h1>
+                <a href="itms-services://?action=download-manifest&url=https://hypercheats.vn/IPA/downloadLQM.plist" class="install-button">Cài đặt</a>
+            </section>
+        </div>
+
+        <section class="summary-box">
+            <div class="summary-item">
+                <span class="summary-title">NHÀ PHÁT TRIỂN</span>
+                <span class="summary-value">HyperCheats</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-title">PHIÊN BẢN</span>
+                <span class="summary-value">2.5<span class="build"></span></span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-title">CẬP NHẬT NGÀY</span>
+                <span class="summary-value">14/11/1025</span>
+            </div>
+        </section>
+
+        <div class="responsive-wrapper">
+            
+            <div class="list-group">
+                <h3>Nội Dung Cập Nhật</h3>
+                <div class="list-item">
+                    <span class="value" style="color: #fff;">
+                        HackMap - Hồi Chiêu - Hiển Thị LSĐ
+                        <br>Mở Khoá Toàn Bộ skin
+                        <br>Tự động bộc phá / trừng trị / bổ trợ
+                        <br>Tự động bán đồ / đổi đồ 
+                        <br>Aimbot tất cả các tướng 
+                        <br>Bug kéo dài tầm chiêu 
+                        <br>Mod nút / thông báo hạ / phụ kiện / skin lính
+                        <br>Log song song chống tố
+                       
+                    </span>
+                </div>
+            </div>
+
+            <div class="list-group slider-box-override">
+                <div class="slider-container">
+                    <div class="slider-wrapper">
+                        <img src="images/1286x0w_1.webp" alt="Ảnh 1" class="slide">
+                        <img src="images/1286x0w_1.webp" alt="Ảnh 2" class="slide">
+                        <img src="images/1286x0w_1.webp" alt="Ảnh 3" class="slide">
+                        <img src="images/1286x0w_1.webp" alt="Ảnh 4" class="slide">
+                    </div>
+                    <div class="slider-dots">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                        <span class="dot" data-slide="3"></span>
+                    </div>
+                </div>
+                </div>
+
+        </div> <div class="list-group">
+            <h3>Cách Tin Cậy Ứng Dụng</h3>
+            <div class="list-item">
+                <span class="value" style="color: #cccccc;">Cài Đặt > Cài Đặt Chung > Quản Lý VPN & Thiết Bị > Tin Cậy Chứng Chỉ</span>
+            </div>
+        </div>
+
+        <div class="list-group">
+            <h3>Thông tin ứng dụng</h3>
+            <div class="list-item">
+                <span class="key">Nhà Phát Triển</span>
+                <span class="value">666Cheat Game</span>
+            </div>
+            <div class="list-item">
+                <span class="key">Ngày phát hành</span>
+                <span class="value">ngày 14 thg 11, 2025</span>
+            </div>
+            <div class="list-item">
+                <span class="key">Phiên bản</span>
+                <span class="value">2.5</span>
+            </div>
+            <div class="list-item">
+                <span class="key">Kích cỡ</span>
+                <span class="value">220 MB</span>
+            </div>
+            <div class="list-item">
+                <span class="key">Khả năng tương thích</span>
+                <span class="value">Mọi Thiết Thị Apple</span>
+            </div>
+        </div>
+        
+        <br>
     </div>
-  </header>
 
-  <main class="container">
-    <!-- Noti -->
-    <section class="hero" aria-label="Thông tin ứng dụng">
-      <div class="app-icon-wrap">
-        <!-- Icon app -->
-        <img class="app-icon" src="https://i.pinimg.com/736x/b5/b9/78/b5b9782682d668a66b560c2f7c92227b.jpg" alt="Icon">
-      </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const wrapper = document.querySelector('.slider-wrapper');
+            const dots = document.querySelectorAll('.dot');
+            const slides = document.querySelectorAll('.slide');
+            const totalSlides = slides.length;
+            let currentSlide = 0;
+            let slideInterval;
 
-      <div class="hero-right">
-        <div class="title-row">
-          <h1 class="title">666 Cheat VNA</h1>
-          <div class="badge"></div>
-        </div>
+            function showSlide(index) {
+                // Kiểm tra nếu các phần tử tồn tại
+                if (!wrapper || !dots[index]) {
+                    console.error("Slider elements not found.");
+                    return;
+                }
+                wrapper.style.transform = `translateX(-${index * 100}%)`;
+                dots.forEach(dot => dot.classList.remove('active'));
+                dots[index].classList.add('active');
+            }
 
-        <div class="developer"></div>
-        <div class="meta"><span>Paid</span> · <span>19/11/2025</span></div>
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                showSlide(currentSlide);
+            }
 
-        <div class="actions">
-          <!-- Link button -->
-          <a class="btn primary" href="itms-services://?action=download-manifest&url=https://ipa.ipasign.cc/manifest/173c8677d232.plist"> Cài Đặt </a>
-          <a class="btn rainbow-fill" href="https://install.cheatlibrary.xyz/luuy.html" target="_blank">Lưu Ý !</a>
-          <a class="btn green" href="https://zalo.me/0979110280" target="_blank">Mua Ngay</a>
-          <a class="btn danger" href="https://install.cheatlibrary.xyz/skinao.html" target="_blank">List Skin Ảo ⚠️</a>
-          <a class="btn rainbow-fill" href="https://tinyurl.com/key666vna" target="_blank">Get Key Free Hàng Ngày</a>
-        </div>
-      </div>
-    </section>
+            function startSlider() {
+                slideInterval = setInterval(nextSlide, 3000); // 3000ms = 3 giây
+            }
 
-    <!-- Review -->
-    <section class="section screenshots" aria-label="Screenshot">
-      <div class="section-head">
-        <h2>Xem Trước</h2>
-        <div class="platforms"><a class="active">iPhone</a> <a></a></div>
-      </div>
+            function stopSlider() {
+                clearInterval(slideInterval);
+            }
 
-      <ul class="screenshot-list" role="list">
-        <!-- Ảnh Review -->
-        <li><img src="img/anti.png" alt="ANTI"></li>
-        <li><img src="img/aim.jpg" alt="AIM"></li>
-        <li><img src="img/main.jpg" alt="MAIN"></li>
-        <li><img src="img/mod.jpg" alt="MOD"></li>
-        <li><img src="img/autosell.jpg" alt="AUTOSELL"></li>
-      </ul>
-    </section>
-    <p class="lead-text">Vào game mở menu nhớ tick vào ô bật blocktrack để antiban chạy ổn định. Giá hack: 30k/ngày | 130k/tuần | 200k/tháng | 500k/mùa (3 tháng). Nhấn vào nút mua ngay để liên hệ admin<p>
-<br> ➜ .ᐟ AntiBan Vip (Ban Max 7 Ngày, Không Ban Năm) ✅
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    stopSlider(); // Dừng tự động chạy khi user click
+                    currentSlide = parseInt(dot.dataset.slide);
+                    showSlide(currentSlide);
+                    startSlider(); // Khởi động lại
+                });
+            });
 
-<br> ➜ .ᐟ Log Song Song Nổ Gốc Tự Động Chống Tố ✅
-      
-<br> ➜ .ᐟ Hack Full Map, Cam Xa Tùy Chỉnh, Fake Tên Trong Trận ✅
-
-<br> ➜ .ᐟ Aim Full Tướng, Bug Skill ✅
-
-<br> ➜ .ᐟ Unlock All Skin, Unlock Phụ Kiện, Mod Rank, Nút Bấm, TB Hạ, Mod Sảnh ✅
-
-<br> ➜ .ᐟ Auto Mua Bán Đồ Vip ✅
-    <!-- Tin cậy -->
-    <section class="section gallery-instructions">
-      <div class="gallery-heading">Hướng Dẫn Tin Cậy</div>
-
-      <div class="gallery-scroll" aria-hidden="false">
-        <!-- tin cậy -->
-        <img src="https://i.imgur.com/56TqnFh.png" alt="Hướng dẫn 1">
-        <img src="https://i.imgur.com/ZiXN2n7.png" alt="Hướng dẫn 2">
-        <img src="https://i.imgur.com/5KIIyuG.png" alt="Hướng dẫn 3">
-      </div>
-    </section>
-
-<!-- cách dùng -->
-<section class="section whats-new">
-  <h3 class="whats-new-title">Hướng Dẫn Sử Dụng</h3>
-  
-  <!-- Video YouTube -->
-  <div class="video-wrapper">
-    <iframe 
-      width="100%" 
-      height="315" 
-      src="https://www.youtube.com/embed/qx78YiCak6Q"
-      title="YouTube video player" 
-      frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen>
-    </iframe>
-  </div>
-
-  <p class="lead-text muted-list">
-    Phiên bản 1.60.1<br>
-  </p>
-</section>
-
-
-    <!-- PRIVACY & INFO -->
-    <section class="section">
-      <h2>Quyền Riêng Tư Của Ứng Dụng</h2>
-      <p class="lead-text">Nhà phát triển <strong>tuiducios.xyz </strong> đã cho biết rằng phương thức đảm bảo quyền riêng tư của ứng dụng có thể bao gồm việc xử lý dữ liệu như được mô tả ở bên dưới. Để biết thêm thông tin, hãy xem chính sách quyền riêng tư của nhà phát triển.</p>
-
-      <h3 style="margin-top:18px;font-weight:800">Thông Tin</h3>
-      <p class="muted-list"><strong>Nhà cung cấp</strong><br>tuiducios</p>
-      <p class="muted-list"><strong>Kích cỡ</strong><br>196,6 MB</p>
-      <p class="muted-list"><strong>Danh mục</strong><br>Trò chơi</p>
-    </section>
-
-    <footer class="footer">
-      <p>© 2025 <a href="https://Cheatlibrary.xyz/">Cheatlibrary.xyz</a>. All rights reserved.</p>
-    </footer>
-
-    <div class="bottom-space" aria-hidden="true"></div>
-  </main>
-
-  <script>
-    // JS nhỏ: khi click platform iPhone/iPad thì chỉ toggle class 
-    document.querySelectorAll('.platforms a').forEach((el, i) => {
-      el.addEventListener('click', function(e){
-        e.preventDefault();
-        document.querySelectorAll('.platforms a').forEach(a => a.style.opacity=0.6);
-        el.style.opacity = 1;
-      });
-    });
-
-    // Thêm "snap" mượt cho gallery trên iOS
-    document.querySelectorAll('.screenshot-list, .gallery-scroll').forEach(el=>{
-      el.style.scrollSnapType = 'x mandatory';
-      Array.from(el.querySelectorAll('img, li')).forEach(item=>{
-        item.style.scrollSnapAlign = 'center';
-      });
-    });
-  </script>
+            // Chỉ chạy slider nếu có slides
+            if (totalSlides > 0) {
+                startSlider();
+            }
+        });
+    </script>
 </body>
 </html>
