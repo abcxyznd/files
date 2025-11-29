@@ -1,450 +1,418 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>666Cheat LQMB</title>
-      <!-- Favicon -->
-    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/App_Store_%28iOS%29.svg/1024px-App_Store_%28iOS%29.svg.png" type="image/x-icon" />
-    <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/App_Store_%28iOS%29.svg/1024px-App_Store_%28iOS%29.svg.png" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>666 Cheat VN</title>
+    
+        <!-- Favicon -->
+    <link rel="icon" href="https://i.pinimg.com/736x/ed/c7/c5/edc7c5fd981c44e2dfc533688f28d6c8.jpg" type="image/x-icon" />
+    <link rel="shortcut icon" href="https://i.pinimg.com/736x/ed/c7/c5/edc7c5fd981c44e2dfc533688f28d6c8.jpg" type="image/x-icon" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* --- Cài đặt cơ bản --- */
         * {
-            box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #000;
-            color: #f2f2f7;
             margin: 0;
             padding: 0;
-        }
-
-        .mobile-container {
-            background-color: #000; /* Nền đen như ảnh */
-            min-height: 100vh;
-        }
-
-        /* --- Thanh điều hướng (Header) cho phần nâu --- */
-        .brown-section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 15px;
-            color: #0d84fe; /* Màu xanh đặc trưng của iOS */
-            background-color: #5d493a; /* Nền màu nâu */
-            position: relative; /* Để profile pic có thể được định vị */
-        }
-
-        .nav-icon.back {
-            font-size: 28px;
-            font-weight: 300;
-            cursor: pointer;
-        }
-
-        .nav-icon.share {
-            font-size: 24px;
-            cursor: pointer;
-            width: 34px;
-            height: 34px;
-            text-align: center;
-            line-height: 34px;
-        }
-
-        .nav-title {
-            color: #f2f2f7;
-            font-weight: 600;
-            font-size: 17px;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            white-space: nowrap;
-        }
-
-        .profile-pic {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border: 1px solid rgba(255,255,255,0.1);
-            position: absolute;
-            right: 50px; /* Đặt bên cạnh nút share */
-            top: 10px;
-        }
-
-        /* --- Thông tin ứng dụng (Cài đặt) - Phần nâu --- */
-        .app-install-brown-background {
-            background-color: #5d493a; /* Nền màu nâu */
-            padding-bottom: 20px; /* Tạo khoảng trống dưới nút cài đặt */
-        }
-
-        .app-install {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px 15px 0 15px; /* Điều chỉnh padding */
-            text-align: center;
-        }
-
-        .app-icon {
-            width: 120px;
-            height: 120px;
-            border-radius: 22.5%; /* Bo góc kiểu iOS */
-            background-color: #333; /* Màu xám dự phòng nếu ảnh không tải được */
-            margin-bottom: 15px;
-            /* Đã cập nhật link ảnh icon */
-            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0g6HBipeoX3awNNaLOseSH-XdzXRtaU-j8g&s');
-            background-size: cover;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Thêm đổ bóng nhẹ */
-        }
-
-        .app-install h1 {
-            font-size: 28px;
-            font-weight: 700;
-            margin: 0 0 10px 0;
-            color: #fff;
-        }
-
-        .install-button {
-            /* Thay thế #000 bằng rgba(0, 0, 0, 0.5) */
-            background-color: rgba(0, 0, 0, 0.5); /* Nền đen, 50% trong suốt */
-            color: white; /* Chữ trắng vẫn rõ 100% */
-            border: none;
-            border-radius: 90px;
-            padding: 20px 100px;
-            font-size: 16px;
-            font-weight: 600;
-            margin-top: 20px;
-            cursor: pointer;
-            text-decoration: none;
-            /* Đã xóa 'opacity: 0.5;' */
-        }
-
-        /* --- Hộp tóm tắt 3 cột --- */
-        .summary-box {
-            display: flex;
-            justify-content: space-around;
-            background-color: #1c1c1e; /* Màu nền hộp */
-            border-radius: 12px;
-            padding: 15px 10px;
-            margin: 20px 15px 20px 15px; /* Margin 15px 2 bên sẽ giữ nó không bị dính sát mép */
-        }
-
-        .summary-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex-basis: 33%;
-        }
-
-        .summary-title {
-            font-size: 10px;
-            color: #8e8e93; /* Màu xám chữ nhỏ */
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
-        .summary-value {
-            font-size: 18px;
-            color: #fff;
-            margin-top: 8px;
-            font-weight: 600;
-        }
-
-        .summary-value .build {
-            color: #8e8e93;
-            font-size: 16px;
-            font-weight: 400;
-        }
-
-        /* --- Các nhóm danh sách thông tin --- */
-        .list-group {
-            background-color: #1c1c1e;
-            border-radius: 12px;
-            margin: 20px 15px; /* Margin 15px 2 bên sẽ giữ nó không bị dính sát mép */
-            overflow: hidden;
-            padding: 10px 10px;
-
-        }
-
-        .list-group h3 {
-            font-size: 20px;
-            font-weight: 600;
-            color: #fff;
-            padding: 15px 15px 5px 15px;
-            margin: 0;
-        }
-
-        .list-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 15px;
-            border-bottom: 1px solid #38383a; /* Đường kẻ mờ */
-            min-height: 44px; /* Chiều cao chuẩn của iOS */
-        }
-
-        .list-group .list-item:last-child {
-            border-bottom: none;
+            box-sizing: border-box;
         }
         
-        .list-group.no-header {
-             padding-top: 0;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
         
-        .list-group.no-header .list-item:first-child {
-            border-top: none;
-        }
-
-        .list-item .key {
-            color: #fff;
-            font-size: 16px;
-        }
-
-        .list-item .value {
-            color: #8e8e93; /* Màu xám cho giá trị */
-            font-size: 16px;
-        }
-
-        .list-item .value.link {
-            color: #0d84fe; /* Màu xanh cho link */
-            text-decoration: none;
-        }
-
-        .list-item .value.arrow {
-            font-size: 20px;
-            color: #3c3c43;
-            font-weight: 600;
-        }
-
-        /* --- CSS CHO SLIDER ẢNH --- */
-        .slider-container {
-            position: relative;
-            width: 100%;
-            margin: 0 auto; /* Đã xóa margin-top */
-            overflow: hidden; /* Đây là chìa khoá để ẩn các ảnh khác */
-            border-radius: 8px; /* Bo góc cho slider */
-        }
-
-        .slider-wrapper {
-            display: flex;
-            transition: transform 0.5s ease-in-out; 
-        }
-
-        .slide {
-            width: 100%;
-            flex-shrink: 0;
-            display: block;
-        }
-
-        .slider-dots {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: none;
-        }
-
-        .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.5);
-            margin: 0 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .dot.active {
-            background-color: #fff;
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
         }
         
-        /* * ==================================
-         * CSS MỚI CHO BỐ CỤC RESPONSIVE
-         * ==================================
-        */
-        .responsive-wrapper {
-            display: flex;
-            flex-direction: column; /* Mặc định: xếp chồng */
+        .shimmer {
+            animation: shimmer 3s infinite;
         }
-
-        /* CSS cho hộp slider mới */
-        .slider-box-override {
-            padding: 0; /* Ghi đè padding: 10px 10px */
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
-        .slider-box-override .slider-container {
-            border-radius: 12px; /* Đảm bảo slider cũng bo góc */
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
         }
-
-        /* Khi màn hình đủ rộng (ví dụ: > 768px) */
-        @media (min-width: 768px) {
-            .responsive-wrapper {
-                flex-direction: row; /* Chuyển sang xếp hàng ngang */
-                margin: 0 15px; /* Đặt margin bên ngoài cho cả nhóm */
-                gap: 20px; /* Khoảng cách 20px giữa 2 hộp */
-            }
-
-            .responsive-wrapper > .list-group {
-                margin: 20px 0; /* Xóa margin ngang, giữ margin dọc */
-                flex: 1 1 50%; /* Mỗi hộp chiếm 50% và tự dãn */
-            }
+        
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-
+        
+        .animate-rainbow {
+            animation: rainbow 3s ease infinite;
+            background-size: 200% 200%;
+        }
+        
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
     </style>
 </head>
-<body>
-
-    <div class="mobile-container">
-        
-        <div class="app-install-brown-background">
-            <header class="brown-section-header">
-                <span class="nav-icon back"></span>
-                <span class="nav-title">666 LQM</span>
-                <img src="https://play-lh.googleusercontent.com/u-HxG-Q1fEpAL9w96iIEaBR0iQOY8yeqDuDvhUTr_J98nfOuAAa7S0B0nkAc0ROnnh555Qp2XYBqbN2FsvyN6p4=w240-h480-rw" alt="Profile" class="profile-pic">
-                <span class="nav-icon share">⇪</span>
-            </header>
-
-            <section class="app-install">
-                <div class="app-icon"></div>
-                <h1>666 Cheats LQMB</h1>
-                <a href="https://ipalinks.ru/wh/qU2XxlcJ" class="install-button">Cài đặt</a>
-            </section>
-        </div>
-
-        <section class="summary-box">
-            <div class="summary-item">
-                <span class="summary-title">NHÀ PHÁT TRIỂN</span>
-                <span class="summary-value">tuiducios</span>
-            </div>
-            <div class="summary-item">
-                <span class="summary-title">PHIÊN BẢN</span>
-                <span class="summary-value">2.5<span class="build"></span></span>
-            </div>
-            <div class="summary-item">
-                <span class="summary-title">CẬP NHẬT NGÀY</span>
-                <span class="summary-value">20/11/1025</span>
-            </div>
-        </section>
-
-        <div class="responsive-wrapper">
-            
-            <div class="list-group">
-                <h3>Nội Dung Cập Nhật</h3>
-                <div class="list-item">
-                    <span class="value" style="color: #fff;">
-                        HackMap - Hồi Chiêu - Hiển Thị LSĐ
-                        <br>Mở Khoá Toàn Bộ skin
-                        <br>Tự động bộc phá / trừng trị / bổ trợ
-                        <br>Tự động bán đồ / đổi đồ 
-                        <br>Aimbot tất cả các tướng 
-                        <br>Bug kéo dài tầm chiêu 
-                        <br>Mod nút / thông báo hạ / phụ kiện / skin lính
-                        <br>Log song song chống tố
-                       
-                    </span>
-                </div>
-            </div>
-
-            <div class="list-group slider-box-override">
-                <div class="slider-container">
-                    <div class="slider-wrapper">
-                        <img src="https://play-lh.googleusercontent.com/YDdvbOq8d07Goq7c_4hHOPuPvR75EO2PPpi7Y7ttH_o1YsB9jkf9pVvdEH3mq4g4LyL2zznUsIAsfLeRbhZ8=w2560-h1440-rw" alt="Ảnh 1" class="slide">
-                        <img src="https://play-lh.googleusercontent.com/t_aZWs4S6JFLp30nQ2m9b_lw1_FQQwONkfjxbGrAeBMEeG41jsQICUabXWK2AmYdKsMfRBmeIPUgEfU1MQIgWQ=w2560-h1440-rw" alt="Ảnh 2" class="slide">
-                        <img src="https://play-lh.googleusercontent.com/dm8mL50y5kUQX_WO4j8XsbFMg1sfsGvImstJI8RSm84w0GVawGaeV_KrjNZ8UOL-Pc7gl0YcACTkF12AzPnpQw=w2560-h1440-rw" alt="Ảnh 3" class="slide">
-                        <img src="https://play-lh.googleusercontent.com/1bEeGNW9hxP2fDS7rW5ehrpNt7KMFahmh7mB8mxhae1SToaREw1faPw-GaJW7qeHBaj3Daf_5GkCvHaBm1OnyA=w2560-h1440-rw" alt="Ảnh 4" class="slide">
-                    </div>
-                    <div class="slider-dots">
-                        <span class="dot active" data-slide="0"></span>
-                        <span class="dot" data-slide="1"></span>
-                        <span class="dot" data-slide="2"></span>
-                        <span class="dot" data-slide="3"></span>
+<body class="bg-black">
+<div class="min-h-screen bg-black" style="padding-top: env(safe-area-inset-top);">
+    <!-- Navigation Bar -->
+    <nav class="border-b border-white/10 bg-gradient-to-br from-[#010101] via-[#090909] to-[#010101] sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-8">
+                    <!-- Logo with typing effect -->
+                    <a href="/" class="group flex items-center gap-3 no-underline">
+                        <!-- Logo Icon -->
+                        <img src="https://i.pinimg.com/736x/de/b1/3e/deb13ea409d3d6fc10d845cd5d75ac1c.jpg" alt="" class="w-10 h-10 shrink-0 rounded-lg">
+                        
+                        <!-- Text with typing effect -->
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-white font-black text-xl">
+                                666 Cheat VN
+                            </span>
+                            
+                            <!-- Expanded Text "IPA Library" on hover -->
+                            <span class="origin-left inline-flex duration-300 opacity-0 group-hover:opacity-100 transform scale-x-0 group-hover:scale-x-100 transition-all text-gray-400 font-medium text-sm whitespace-nowrap">
+                            </span>
+                        </div>
+                    </a>
+                    
+                    <!-- Social Group Links -->
+                    <div class="flex items-center gap-2 sm:ml-0">
+ <!-- Zalo Group Button -->
+                        <a href="https://zalo.me/g/ytnziq072" 
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="group relative animate-rainbow cursor-pointer border-0 bg-[linear-gradient(#121213,#121213),linear-gradient(#121213_50%,rgba(18,18,19,0.6)_80%,rgba(18,18,19,0)),linear-gradient(90deg,hsl(210,100%,63%),hsl(210,100%,63%),hsl(210,100%,63%),hsl(210,100%,63%),hsl(210,100%,63%))] bg-[length:200%] [background-clip:padding-box,border-box,border-box] [background-origin:border-box] [border:calc(0.08*1rem)_solid_transparent] before:absolute before:bottom-[-20%] before:left-1/2 before:z-0 before:h-[20%] before:w-[60%] before:-translate-x-1/2 before:animate-rainbow before:bg-[linear-gradient(90deg,hsl(210,100%,63%),hsl(210,100%,63%),hsl(210,100%,63%),hsl(210,100%,63%),hsl(210,100%,63%))] before:[filter:blur(calc(0.8*1rem))] hover:scale-105 active:scale-95 h-8 px-3 py-1.5 inline-flex items-center justify-center rounded-md text-xs font-medium transition-transform duration-200 whitespace-nowrap"
+                           title="Tham gia nhóm Zalo">
+                            <img src="https://rubee.com.vn/wp-content/uploads/2021/05/logo-zalo.png" alt="discord" class="w-4 h-4"/>
+                            <span class="ml-1.5 text-white font-medium">Group Zalo</span>
+                        </a>
+                        
+ <!-- Telegram Channel Button -->
+                        <a href="https://t.me/sixsixsixindahell" 
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="group relative animate-rainbow cursor-pointer border-0 bg-[linear-gradient(#121213,#121213),linear-gradient(#121213_50%,rgba(18,18,19,0.6)_80%,rgba(18,18,19,0)),linear-gradient(90deg,hsl(195,100%,63%),hsl(195,100%,63%),hsl(195,100%,63%),hsl(195,100%,63%),hsl(195,100%,63%))] bg-[length:200%] [background-clip:padding-box,border-box,border-box] [background-origin:border-box] [border:calc(0.08*1rem)_solid_transparent] before:absolute before:bottom-[-20%] before:left-1/2 before:z-0 before:h-[20%] before:w-[60%] before:-translate-x-1/2 before:animate-rainbow before:bg-[linear-gradient(90deg,hsl(195,100%,63%),hsl(195,100%,63%),hsl(195,100%,63%),hsl(195,100%,63%),hsl(195,100%,63%))] before:[filter:blur(calc(0.8*1rem))] hover:scale-105 active:scale-95 h-8 px-3 py-1.5 inline-flex items-center justify-center rounded-md text-xs font-medium transition-transform duration-200 whitespace-nowrap"
+                           title="Theo dõi kênh Telegram">
+                            <img src="https://img.icons8.com/fluency/48/telegram-app.png" alt="telegram" class="w-4 h-4 opacity-90"/>
+                            <span class="ml-1.5 text-white font-medium">Kênh Telegram</span>
+                        </a>
                     </div>
                 </div>
-                </div>
-
-        </div> <div class="list-group">
-            <h3>Cách Tin Cậy Ứng Dụng</h3>
-            <div class="list-item">
-                <span class="value" style="color: #cccccc;">Cài Đặt > Cài Đặt Chung > Quản Lý VPN & Thiết Bị > Tin Cậy Chứng Chỉ</span>
             </div>
         </div>
+    </nav>
 
-        <div class="list-group">
-            <h3>Thông tin ứng dụng</h3>
-            <div class="list-item">
-                <span class="key">Nhà Phát Triển</span>
-                <span class="value">666Cheat Game</span>
-            </div>
-            <div class="list-item">
-                <span class="key">Ngày phát hành</span>
-                <span class="value">ngày 14 thg 11, 2025</span>
-            </div>
-            <div class="list-item">
-                <span class="key">Phiên bản</span>
-                <span class="value">2.5</span>
-            </div>
-            <div class="list-item">
-                <span class="key">Kích cỡ</span>
-                <span class="value">220 MB</span>
-            </div>
-            <div class="list-item">
-                <span class="key">Khả năng tương thích</span>
-                <span class="value">Mọi Thiết Thị Apple</span>
-            </div>
-        </div>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
         
-        <br>
+<input type="hidden" name="csrfmiddlewaretoken" value="Cp74OLPNoirkVHpnms7EbPTqaF24v7ZFsfccHLfy3Y5zwjjJ7Ura7ppzDXfuOZZc">
+<div class="max-w-7xl mx-auto">
+    <!-- Back Button -->
+<!--    <a href="https://tumadam.io.vn" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 bg-gradient-to-br from-black/60 to-black/40 hover:bg-white/10 transition-all duration-300 transform hover:scale-105 active:scale-95 mb-6 group text-sm no-underline text-white">
+        <i class="fas fa-arrow-left text-blue-400 transform transition-transform duration-300 group-hover:-translate-x-1"></i>
+        <span class="font-semibold">Quay lại</span>
+    </a> -->
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+        <!-- Left Column: App Info Card -->
+        <div class="lg:col-span-2">
+            <!-- Single Unified App Card -->
+            <div class="rounded-3xl border border-white/10 bg-gradient-to-br from-[#010101] via-[#090909] to-[#010101] overflow-hidden shadow-2xl">
+                <div class="p-6 sm:p-8">
+                    <!-- App Header -->
+                    <div class="pb-6 border-b border-white/10">
+                        <div class="flex flex-col lg:flex-row items-start gap-4 mb-4">
+                            <!-- Left: Icon + Title + Badges + Meta -->
+                            <div class="flex-1 w-full lg:w-auto">
+                                <div class="flex items-start gap-4 mb-4">
+                                    <!-- App Icon -->
+                                    
+                                    <img src="https://play-lh.googleusercontent.com/u-HxG-Q1fEpAL9w96iIEaBR0iQOY8yeqDuDvhUTr_J98nfOuAAa7S0B0nkAc0ROnnh555Qp2XYBqbN2FsvyN6p4=w480-h960" alt="Aovcheat" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl shadow-xl object-cover flex-shrink-0 border border-white/20">
+                                    
+                                    
+                                    <!-- Title & Description -->
+                                    <div class="flex-1 min-w-0">
+                                        <h1 class="text-2xl sm:text-4xl font-bold text-white leading-tight mb-2">666 LQMB CHEAT</h1>
+                                        
+<a href="https://www.youtube.com/@LewisMapSangAOV"
+   class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium transition-all duration-300 mt-2 no-underline">
+    <i class="fa-solid fa-video"></i>
+    Demo Chức Năng
+</a>
+                                        <p class="text-sm text-gray-400"></p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Badges Row -->
+                                <div class="flex flex-wrap gap-3 items-center text-sm mb-3">
+                                    <span class="font-semibold text-blue-400">
+                                        Direc Link Install
+                                    </span>
+                                    
+                                    <span class="text-gray-400">
+                                        • v1.60.11505108
+                                    </span>
+                                    
+                                    
+                                    <span class="text-gray-400">
+                                        • 210 MB
+                                    </span>
+                                    
+                                </div>
+                                
+                                <!-- Meta info -->
+                                <div class="flex flex-wrap gap-x-4 gap-y-2 text-sm text-gray-400">
+                                
+                                    <span class="flex items-center gap-1.5">
+<span class="flex items-center gap-1.5">
+  <i class="fas fa-download text-green-400"></i>
+  <span id="download-count">0</span> lượt tải
+</span>
+                                    <span class="flex items-center gap-1.5">
+                                        <i class="fas fa-clock text-purple-400"></i>
+                                        29/11/2025
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- Preview Images -->
+                            
+                            <!-- Right: Download Button (Desktop only, hidden on mobile) -->
+                            <div class="hidden lg:flex flex-shrink-0 items-start">
+                                
+                                <a id="install-btn-desktop" href="https://ipalinks.ru/wh/qU2XxlcJ" 
+                                   class="relative inline-flex h-12 active:scale-95 transition overflow-hidden rounded-lg p-[1px] focus:outline-none no-underline">
+                                    <span class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#e7029a_0%,#f472b6_50%,#bd5fff_100%)]"></span>
+                                    <span class="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-slate-950 px-7 text-sm font-medium text-white backdrop-blur-3xl gap-2">
+                                        Cài Đặt
+                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"></path>
+                                        </svg>
+                                    </span>
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Download Button (Mobile only, below bundle ID) -->
+                    <div class="lg:hidden py-6 border-b border-white/10">
+                        <div class="flex justify-center">
+                            
+                            <a id="install-btn-mobile" href="https://ipalinks.ru/wh/qU2XxlcJ" 
+                               class="relative inline-flex h-12 active:scale-95 transition overflow-hidden rounded-lg p-[1px] focus:outline-none no-underline">
+                                <span class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#e7029a_0%,#f472b6_50%,#bd5fff_100%)]"></span>
+                                <span class="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-slate-950 px-7 text-sm font-medium text-white backdrop-blur-3xl gap-2">
+                                    Cài Đặt
+                                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"></path>
+                                    </svg>
+                                </span>
+                            </a>
+                            
+                        </div>
+                    </div>                    <!-- Features Checklist -->
+                     <!-- GET KEY FREE (BELOW) -->
+    <div class="p-5 rounded-xl bg-black/40 border border-white/10 hover:border-pink-500/40 hover:bg-black/50 transition-all duration-300">
+        <h3 class="text-lg font-semibold text-pink-400 mb-2">Get Key Free</h3>
+        <p class="text-gray-400 text-sm mb-4">
+            Nhận key miễn phí mỗi <b class="text-green-400">12 giờ</b>.  
+            Hết hạn có thể get lại ngay – không giới hạn.
+        </p>
+
+        <a href="https://v4.ppapikey.xyz/getlink?tokenID=144&username=LewisAOV"
+           target="_blank"
+           class="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-lg bg-pink-600 hover:bg-pink-700 font-medium text-white text-sm transition">
+            <i class="fa-solid fa-gift"></i>
+            Nhận Key Free
+        </a>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const wrapper = document.querySelector('.slider-wrapper');
-            const dots = document.querySelectorAll('.dot');
-            const slides = document.querySelectorAll('.slide');
-            const totalSlides = slides.length;
-            let currentSlide = 0;
-            let slideInterval;
+    <!-- Notice box -->
+    <div class="mt-6 p-4 rounded-xl bg-black/30 border border-white/10">
+        <h4 class="text-white font-semibold mb-2 flex items-center gap-2">
+            <i class="fa-solid fa-circle-info text-blue-400"></i>
+            Lưu Ý Quan Trọng
+        </h4>
 
-            function showSlide(index) {
-                // Kiểm tra nếu các phần tử tồn tại
-                if (!wrapper || !dots[index]) {
-                    console.error("Slider elements not found.");
-                    return;
-                }
-                wrapper.style.transform = `translateX(-${index * 100}%)`;
-                dots.forEach(dot => dot.classList.remove('active'));
-                dots[index].classList.add('active');
-            }
+        <ul class="text-gray-400 text-sm space-y-2">
+            <li>✔ Key Free có thời gian sử dụng <b class="text-green-400">12 giờ</b></li>
+            <li>✔ Hết hạn <b class="text-yellow-400">Get lại key mới</b>, không giới hạn</li>
+            <li>✔ Nếu Lười Vượt Link Có Thể Mua Key.</li>
+                        <li>✔ Vượt Link Chỉ 1 Lần.</li>
+        </ul>
+    </div>
+    <!-- KEY SECTION -->
+<div class="mt-6 rounded-2xl border border-white/10 bg-gradient-to-br from-[#0a0a0a] via-[#111] to-[#0a0a0a] p-6 shadow-xl">
 
-            function nextSlide() {
-                currentSlide = (currentSlide + 1) % totalSlides;
-                showSlide(currentSlide);
-            }
+    <!-- Title -->
+    <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+        <i class="fa-solid fa-key text-yellow-400"></i>
+        Mua Key
+    </h2>
 
-            function startSlider() {
-                slideInterval = setInterval(nextSlide, 3000); // 3000ms = 3 giây
-            }
+    <!-- BUY KEY (ON TOP) -->
+    <div class="p-5 rounded-xl bg-black/40 border border-white/10 hover:border-blue-500/40 hover:bg-black/50 transition-all duration-300 mb-5">
+        <h3 class="text-lg font-semibold text-blue-400 mb-2">Mua Key </h3>
+        <p class="text-gray-400 text-sm mb-4">Dành Cho Dân Lười Vượt Link.</p>
 
-            function stopSlider() {
-                clearInterval(slideInterval);
-            }
+        <!-- Price table -->
+        <div class="space-y-2 mb-4">
+            <div class="flex justify-between text-sm text-gray-300">
+                <span>• 1 Ngày</span> <span class="text-green-400 font-semibold">20.000đ</span>
+            </div>
+            <div class="flex justify-between text-sm text-gray-300">
+                <span>• 7 Ngày</span> <span class="text-green-400 font-semibold">150.000đ</span>
+            </div>
+            <div class="flex justify-between text-sm text-gray-300">
+                <span>• 1 Tháng</span> <span class="text-green-400 font-semibold">250.000đ</span>
+            </div>
+            <div class="flex justify-between text-sm text-gray-300">
+                <span>• 1 Mùa (3 tháng)</span> <span class="text-green-400 font-semibold">SALE 500.000đ 🔥</span>
+            </div>
+        </div>
 
-            dots.forEach(dot => {
-                dot.addEventListener('click', () => {
-                    stopSlider(); // Dừng tự động chạy khi user click
-                    currentSlide = parseInt(dot.dataset.slide);
-                    showSlide(currentSlide);
-                    startSlider(); // Khởi động lại
-                });
-            });
+        <a href="https://t.me/nguyenduc666"
+           target="_blank"
+           class="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 font-medium text-white text-sm transition">
+            <i class="fa-solid fa-cart-shopping"></i>
+            Liên hệ mua key
+        </a>
+    </div>
 
-            // Chỉ chạy slider nếu có slides
-            if (totalSlides > 0) {
-                startSlider();
-            }
-        });
-    </script>
+</div>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-gradient-to-br from-[#010101] via-[#090909] to-[#010101] mt-auto">
+        <div class="container mx-auto px-4 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Quick Links -->
+                <div class="text-center md:text-left">
+                    <h4 class="text-sm font-semibold text-white mb-4">
+                        Liên kết nhanh
+                    </h4>
+                    <ul class="space-y-3 flex flex-col items-center md:items-start">
+                        <li>
+                            <a href="/" class="text-gray-400 hover:text-blue-400 transition-colors no-underline text-sm">
+                                Trang chủ
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/watch?v=qx78YiCak6Q" class="text-gray-400 hover:text-blue-400 transition-colors no-underline text-sm">
+                                Demo Chức Năng
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/faq/" class="text-gray-400 hover:text-blue-400 transition-colors no-underline text-sm">
+                                Câu hỏi thường gặp
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div class="text-center md:text-left">
+                    <h4 class="text-sm font-semibold text-white mb-4">
+                        Liên hệ
+                    </h4>
+                    <ul class="flex flex-wrap gap-6 justify-center md:justify-start">
+                        <li>
+                            <a href="https://t.me/nguyenduc666" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors no-underline flex items-center gap-2 text-sm">
+                                <img src="https://img.icons8.com/fluency/16/telegram-app.png" alt="telegram"/>
+                                Telegram
+                            </a>
+                        </li>
+<li>
+    <a href="https://www.youtube.com/@LewisMapSangAOV" target="_blank" class="text-gray-400 hover:text-red-500 transition-colors no-underline flex items-center gap-2 text-sm">
+        <img src="https://img.icons8.com/?size=16&id=19318&format=png&color=000000" alt="youtube" class="w-4 h-4"/>
+        YouTube
+    </a>
+</li>
+<li>
+    <a href="https://www.facebook.com/die4memories/" target="_blank" class="text-gray-400 hover:text-blue-600 transition-colors no-underline flex items-center gap-2 text-sm">
+        <img src="https://img.icons8.com/fluency/16/facebook-new.png" alt="facebook" class="w-4 h-4"/>
+        Facebook
+    </a>
+</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 mt-8 pt-6 text-center">
+                <p class="text-sm text-gray-400">© 2025 666 Cheat Game</p>
+            </div>
+        </div>
+    </footer>
+
+</div>
+<script type="module">
+  // Import Firebase SDK
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
+  import { getDatabase, ref, runTransaction } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
+
+  // Cấu hình Firebase Web App
+  const firebaseConfig = {
+    apiKey: "AIzaSyCvliK4re3evoI0dPnqHa4cKFBDj0CTROY",
+    authDomain: "count-b21c9.firebaseapp.com",
+    databaseURL: "https://count-b21c9-default-rtdb.firebaseio.com",
+    projectId: "count-b21c9",
+    storageBucket: "count-b21c9.firebasestorage.app",
+    messagingSenderId: "776731106290",
+    appId: "1:776731106290:web:9fbe1a0455da0c3671296b",
+    measurementId: "G-9RYSHTW83B"
+  };
+
+  // Khởi tạo Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const db = getDatabase(app);
+
+  // Tham chiếu lượt tải trong DB
+  const countRef = ref(db, 'downloads/aovcheat');
+
+  // Hàm tăng lượt tải
+  function increaseDownloadCount() {
+    runTransaction(countRef, (currentValue) => {
+      return (currentValue || 0) + 1;
+    }).then((result) => {
+      const newCount = result.snapshot.val();
+      console.log("Đã tăng lượt tải:", newCount);
+
+      // Cập nhật lên giao diện
+      const el = document.querySelector("#download-count");
+      if (el) el.textContent = newCount;
+    }).catch((err) => {
+      console.error("Lỗi khi tăng lượt tải:", err);
+    });
+  }
+
+  // Gắn vào nút cài đặt (desktop + mobile)
+  const btnDesktop = document.querySelector("#install-btn-desktop");
+  const btnMobile  = document.querySelector("#install-btn-mobile");
+
+  if (btnDesktop) {
+    btnDesktop.addEventListener("click", increaseDownloadCount);
+  }
+  if (btnMobile) {
+    btnMobile.addEventListener("click", increaseDownloadCount);
+  }
+
+  // Khi load trang → chỉ LẤY số lượt tải, không tăng!
+  import { get } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
+
+  get(countRef).then((snapshot) => {
+    if (snapshot.exists()) {
+      const el = document.querySelector("#download-count");
+      if (el) el.textContent = snapshot.val();
+    }
+  });
+</script>
 </body>
 </html>
