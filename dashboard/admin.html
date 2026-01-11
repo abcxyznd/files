@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard</title>
+          <!-- Favicon -->
+    <link rel="icon" href="/img/admin.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="/img/admin.png" type="image/x-icon" />
+  
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
+          colors: { 
+            brand: '#6366f1', 
+            brandDark: '#4f46e5',
+            surface: '#ffffff',
+            surfaceDark: '#1e293b',
+            bgDark: '#0f172a'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root{ --grid-line: rgba(0,0,0,0.03); --grid-size: 36px; }
+    .dark{ --grid-line: rgba(255,255,255,0.03); }
+    body { font-size: 0.95rem; background-image: linear-gradient(90deg, var(--grid-line) 1px, transparent 1px), linear-gradient(var(--grid-line) 1px, transparent 1px); background-size: var(--grid-size) var(--grid-size), var(--grid-size) var(--grid-size); }
+    .login-bg { background-image: linear-gradient(90deg, var(--grid-line) 1px, transparent 1px), linear-gradient(var(--grid-line) 1px, transparent 1px); background-size: var(--grid-size) var(--grid-size), var(--grid-size) var(--grid-size); }
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+    .dark .glass-effect {
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    .dark ::-webkit-scrollbar-thumb { background: #475569; }
+    
+    .input-field {
+      @apply w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-slate-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand/50 transition-all;
+    }
+    .label-text {
+      @apply block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2;
+    }
+    /* Login avatar styling: floating badge top-right outside card */
+    .login-modal { position: relative; padding-right: 5rem; }
+    .login-avatar {
+      position: absolute;
+      top: -18px; /* float above card */
+      right: -18px; /* hang off the right edge */
+      width: 84px;
+      height: 84px;
+      border-radius: 14px; /* slightly rounded square */
+      object-fit: cover;
+      border: 3px solid rgba(255,255,255,0.9);
+      box-shadow: 0 18px 40px rgba(15,23,42,0.12);
+      transform: rotate(-8deg);
+      z-index: 30;
+      background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    }
+    /* Input label animation (from /test) */
+    .input-box { position: relative; }
+    .input-box .input { font-size: 16px; outline: none; padding: 10px 15px; display: block; width: 100%; border: none; border-radius: 8px; border: 2px solid #999; background: transparent; }
+    .input-box .input:focus, .input-box .input:valid { border-color: #6366f1; }
+    .input-box .label { color: #9ca3af; font-size: 16px; font-weight: normal; position: absolute; pointer-events: none; left: 18px; top: 12px; display: flex; }
+    .input-box .char { transition: .18s ease all; transition-delay: calc(var(--index) * .04s); }
+    .input-box .input:focus ~ .label .char, .input-box .input:valid ~ .label .char { transform: translateY(-20px); font-size: 13px; color: #6366f1; background: transparent; }
+  </style>
+</head>
+<body class="bg-gray-100 dark:bg-bgDark text-gray-900 dark:text-white transition-colors duration-300 min-h-screen">
+
+  <div id="loginOverlay" class="fixed inset-0 z-50 flex items-center justify-center p-4 login-bg">
+    <div class="w-full max-w-md bg-white/90 dark:bg-surfaceDark/90 rounded-3xl shadow-2xl p-8 text-center backdrop-blur-md border border-gray-100 dark:border-white/5 animate-in fade-in zoom-in duration-300 login-modal">
+      <img src="/img/admin.png" alt="admin" class="login-avatar">
+      <div class="flex items-center gap-3 justify-center mb-4">
+        <div class="text-left">
+          <h1 class="text-2xl font-extrabold">Admin Access</h1>
+          <p class="text-gray-500 text-sm">Đăng nhập để quản lý nội dung</p>
+        </div>
+      </div>
+      <div class="mt-4">
+        <div class="input-box">
+          <input required type="password" id="password" class="input input-field text-center text-lg mb-4" onkeypress="if(event.key==='Enter') checkPassword()">
+          <label class="label">
+            <span class="char" style="--index:0; padding-left:4px;">M</span>
+            <span class="char" style="--index:1">ậ</span>
+            <span class="char" style="--index:2">t</span>
+            <span class="char" style="--index:3; padding-right:6px;"> </span>
+            <span class="char" style="--index:4">k</span>
+            <span class="char" style="--index:5">h</span>
+            <span class="char" style="--index:6">ẩ</span>
+            <span class="char" style="--index:7">u</span>
+          </label>
+        </div>
+        <button id="loginBtn" onclick="checkPassword()" class="w-full py-3.5 rounded-xl bg-brand hover:bg-brandDark text-white font-bold shadow-lg shadow-brand/30 transition-all active:scale-95">
+          Đăng Nhập
+        </button>
+        <p id="loginMsg" class="mt-4 text-sm font-medium text-red-500 hidden"></p>
+      </div>
+    </div>
+  </div>
+
+  <div id="dashboard" class="hidden max-w-5xl mx-auto p-4 md:p-8 pb-20">
+    
+    <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+      <div>
+        <h1 class="text-3xl font-black bg-gradient-to-r from-brand to-purple-500 bg-clip-text text-transparent">Dashboard</h1>
+        <p class="text-gray-500 dark:text-gray-400 text-sm">Quản lý nội dung ứng dụng & hệ thống</p>
+      </div>
+      <div class="flex gap-3">
+        <button onclick="logout()" class="px-4 py-2 rounded-lg bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 font-bold text-sm hover:bg-red-100 transition flex items-center gap-2">
+          <i data-lucide="log-out" class="w-4 h-4"></i> Thoát
+        </button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div class="md:col-span-1 bg-white dark:bg-surfaceDark rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-white/5">
+        <h3 class="text-lg font-bold mb-3">Files & Content</h3>
+        <div class="mb-3 small muted">Browse repo files and edit site content (text / JSON / HTML)</div>
+        <div class="flex gap-2 mb-3">
+          <input id="filterInput" class="input-field" placeholder="Filter path..." />
+          <button id="btnRefresh" class="px-3 py-2 rounded-lg bg-brand text-white">Refresh</button>
+        </div>
+        <div id="fileList" style="max-height:420px; overflow:auto;" class="space-y-2"></div>
+        <div class="mt-4">
+          <button id="btnNewFile" class="px-3 py-2 rounded-lg bg-gray-100 dark:bg-white/5">New file</button>
+        </div>
+      </div>
+
+      <div class="md:col-span-2 bg-white dark:bg-surfaceDark rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-white/5">
+        <h3 class="text-lg font-bold mb-3">Editor</h3>
+        <div class="mb-2 small muted">Edit a file and save changes to the repo</div>
+        <div class="grid grid-cols-1 gap-3">
+          <input id="filePath" type="text" class="input-field" placeholder="Path in repo (e.g. content/home.md)" />
+          <div class="flex gap-3 items-start">
+            <div style="flex:1">
+              <textarea id="fileContent" rows="14" class="input-field" placeholder="File content (text / JSON / HTML)"></textarea>
+            </div>
+            <div style="width:160px">
+              <label class="label-text">Image URL (optional)</label>
+              <input id="fileImage" type="text" class="input-field" placeholder="https://..." />
+              <img id="imagePreview" src="https://placehold.co/120" class="w-full mt-3 rounded-lg object-cover border border-gray-200 dark:border-gray-700">
+            </div>
+          </div>
+          <input id="commitMsg" type="text" class="input-field" placeholder="Commit message" value="Update via admin dashboard" />
+          <div class="flex justify-end gap-3">
+            <button id="btnSaveFile" class="px-6 py-2 rounded-xl bg-brand text-white font-bold">Save</button>
+          </div>
+          <div id="editorStatus" class="mt-2 small muted"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Ensure admin avatar loads — attempt fallbacks if the absolute path fails.
+    (function(){
+      const img = document.querySelector('.login-avatar');
+      if(!img) return;
+      const candidates = ['/img/admin.png','../img/admin.png','img/admin.png','/dashboard/img/admin.png'];
+      let tried = 0;
+      img.addEventListener('error', function handler(){
+        tried++;
+        if(tried >= candidates.length) {
+          console.warn('admin avatar failed to load from all candidates');
+          img.removeEventListener('error', handler);
+          return;
+        }
+        img.src = candidates[tried];
+      });
+      // kickstart if not loaded
+      setTimeout(()=>{
+        if(!img.complete || img.naturalWidth === 0) img.src = candidates[0];
+      }, 50);
+    })();
+  </script>
+
+  <script>
+    // === AUTH ===
+    async function checkAuth() {
+      try {
+        const res = await fetch('/dashboard/api/verify', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({}) });
+        if(res.ok) showDashboard();
+      } catch(e) {}
+    }
+    
+    async function checkPassword() {
+      const p = document.getElementById('password').value;
+      const msg = document.getElementById('loginMsg');
+      const btn = document.getElementById('loginBtn');
+      btn.disabled = true;
+      try {
+        const res = await fetch('dashboard/auth/login', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({password: p})
+        });
+        if(!res.ok) throw new Error('Server error');
+        const d = await res.json();
+        if(d.success) {
+          showDashboard();
+        } else {
+          msg.textContent = '❌ Mật khẩu không đúng';
+          msg.classList.remove('hidden');
+        }
+      } catch(e) { msg.textContent = '❌ Lỗi kết nối'; msg.classList.remove('hidden'); }
+      finally { btn.disabled = false; }
+    }
+
+    function showDashboard() {
+        document.getElementById('loginOverlay').classList.add('hidden');
+        document.getElementById('dashboard').classList.remove('hidden');
+        document.getElementById('dashboard').classList.add('animate-in', 'fade-in', 'slide-in-from-bottom-4');
+    }
+
+    function logout() {
+        document.cookie = "admin_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        window.location.reload();
+    }
+
+    // === UI LOGIC ===
+    const CONFIG = {
+        ipa: { title: 'Upload IPA', lblName: 'Tên App', lblExtra: 'Nhà phát triển', hasTags: true },
+        dylib: { title: 'Upload Dylib', lblName: 'Tên Dylib', lblExtra: 'Nhà phát triển', hasTags: true },
+        conf: { title: 'Upload Conf', lblName: 'Tên Cấu hình', lblExtra: 'Tác giả', hasTags: true },
+        sign: { title: 'Đăng Sign Mới', lblName: 'Tên Ứng dụng', lblExtra: 'Ngày cập nhật', lblVer: 'Kích thước (Size)', hasTags: false },
+        cert: { title: 'Đăng Cert Mới', lblName: 'Tên File', lblExtra: 'Tên Chứng Chỉ (CN)', lblVer: 'Trạng thái (Check)', hasTags: false },
+        mod: { title: 'Đăng Mod Hot', lblName: 'Tên Mod', lblExtra: 'Tag (VD: Gold)', lblVer: 'Phiên bản', hasTags: false }
+    };
+
+    function setFormType(type) {
+        document.querySelectorAll('.type-btn').forEach(b => {
+            b.classList.remove('bg-white/20', 'active');
+            b.classList.add('bg-white/10');
+            if(b.dataset.type === type) {
+                b.classList.add('bg-white/20', 'active');
+                b.classList.remove('bg-white/10');
+            }
+        });
+
+        const cfg = CONFIG[type];
+        document.getElementById('currentType').value = type;
+        document.getElementById('formTitleText').textContent = cfg.title;
+        
+        document.getElementById('lbl-name').textContent = cfg.lblName;
+        document.getElementById('lbl-extra').textContent = cfg.lblExtra;
+        
+        // Show/Hide Tags based on type
+        document.getElementById('field-tags-group').style.display = cfg.hasTags ? 'block' : 'none';
+
+        // Adjust Version/Extra fields based on type
+        const lblVer = document.getElementById('lbl-version');
+        const inpVer = document.getElementById('inp-version');
+        const inpExtra = document.getElementById('inp-extra');
+
+        if(type === 'cert') {
+            lblVer.textContent = 'Trạng thái (Check)'; // ex: 🟢 Good
+            inpVer.placeholder = 'VD: 🟢 Good';
+            inpExtra.placeholder = 'VD: China Mobile...';
+        } else if (type === 'sign') {
+            lblVer.textContent = 'Kích thước (Size)';
+            inpVer.placeholder = 'VD: 150 MB';
+            inpExtra.placeholder = 'VD: 2024-12-05 (Để trống lấy ngày hiện tại)';
+        } else if (type === 'mod') {
+            lblVer.textContent = 'Phiên bản';
+            inpVer.placeholder = 'VD: 1.0.5';
+            inpExtra.placeholder = 'VD: Gold / VIP';
+        } else {
+            lblVer.textContent = 'Phiên bản';
+            inpVer.placeholder = 'VD: 1.0.0';
+            inpExtra.placeholder = 'VD: Dev Name';
+        }
+    }
+
+    function updatePreview() {
+        const url = document.getElementById('inp-icon').value;
+        if(url) document.getElementById('preview-icon').src = url;
+    }
+
+    // === SUBMIT LOGIC ===
+    async function submitForm() {
+        const type = document.getElementById('currentType').value;
+        const name = document.getElementById('inp-name').value.trim();
+        const icon = document.getElementById('inp-icon').value.trim();
+        const link = document.getElementById('inp-link').value.trim();
+        const version = document.getElementById('inp-version').value.trim();
+        const desc = document.getElementById('inp-desc').value.trim();
+        const extra = document.getElementById('inp-extra').value.trim(); // Developer / Date / CertName / ModTag
+        
+        // Get Badge
+        const badgeEl = document.querySelector('input[name="badge"]:checked');
+        const badge = badgeEl ? badgeEl.value : null;
+
+        // Get Tags
+        const tags = [];
+        document.querySelectorAll('input[name="tags"]:checked').forEach(c => tags.push(c.value));
+
+        if(!name || !link) {
+            alert('⚠️ Vui lòng nhập ít nhất Tên và Link tải!');
+            return;
+        }
+
+        const btn = document.getElementById('submitBtn');
+        const msg = document.getElementById('uploadMsg');
+        
+        btn.disabled = true;
+        btn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Đang xử lý...';
+        lucide.createIcons();
+
+        // Construct Data Object based on Type
+        let appData = {
+            id: `${type}-${Date.now()}`,
+            type: type,
+            date: new Date().toISOString().split('T')[0] // Default date
+        };
+
+        if (['ipa', 'dylib', 'conf'].includes(type)) {
+            appData.name = name;
+            appData.icon = icon;
+            appData.desc = desc;
+            appData.version = version;
+            appData.developer = extra;
+            appData.tags = tags;
+            appData.badge = badge;
+            if (type === 'conf') appData.link = link; 
+            else appData.fileLink = link;
+            if (type === 'conf') appData.usage = desc; // Conf usually uses desc as usage
+        } 
+        else if (type === 'cert') {
+            // Mapping for cert.json
+            appData.filename = name;
+            appData.check = version || '🟢 Good'; // Version input is Check status
+            appData.certname = extra || 'Unknown'; // Extra input is Cert Name
+            appData.size = desc; // Use Description input for file format/size text
+            appData.downloadUrl = link;
+            appData.iconUrl = icon;
+            appData.tag = badge ? badge.toUpperCase() : 'NEW';
+        } 
+        else if (type === 'mod') {
+            // Mapping for mod.json
+            appData.title = name;
+            appData.version = version;
+            appData.description = desc; // Fix: Ensure description is passed
+            appData.downloadUrl = link;
+            appData.iconUrl = icon;
+            appData.tag = extra || badge; // Use extra input for Tag (e.g. Gold)
+        } 
+        else if (type === 'sign') {
+            // Mapping for sign.json
+            appData.title = name;
+            appData.description = desc;
+            appData.size = version; // Version input is Size
+            appData.date = extra || appData.date; // Use extra input for Date override
+            appData.downloadUrl = link;
+            appData.iconUrl = icon;
+            appData.tag = badge ? badge.toUpperCase() : 'NEW';
+        }
+
+        try {
+            const res = await fetch('/api/upload', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ type, data: appData })
+            });
+            const result = await res.json();
+
+            if(res.ok) {
+                msg.textContent = '✅ Upload thành công!';
+                msg.className = 'mt-4 text-center text-sm font-bold text-green-500';
+                setTimeout(() => { 
+                    msg.textContent = ''; 
+                    resetForm();
+                }, 2000);
+            } else {
+                if(result.code === 'NO_AUTH_COOKIE') {
+                    msg.textContent = '⚠️ Hết phiên đăng nhập. Vui lòng đăng nhập lại.';
+                    logout();
+                } else {
+                    msg.textContent = '❌ Lỗi: ' + (result.error || 'Unknown');
+                }
+                msg.className = 'mt-4 text-center text-sm font-bold text-red-500';
+            }
+        } catch(e) {
+            msg.textContent = '❌ Lỗi kết nối: ' + e.message;
+            msg.className = 'mt-4 text-center text-sm font-bold text-red-500';
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = '<i data-lucide="upload-cloud" class="w-5 h-5"></i> Đăng Tải';
+            lucide.createIcons();
+        }
+    }
+
+    function resetForm() {
+        document.getElementById('inp-name').value = '';
+        document.getElementById('inp-icon').value = '';
+        document.getElementById('inp-link').value = '';
+        document.getElementById('inp-version').value = '';
+        document.getElementById('inp-desc').value = '';
+        document.getElementById('inp-extra').value = '';
+        document.getElementById('preview-icon').src = 'https://placehold.co/100';
+        
+        document.querySelectorAll('input[name="tags"]').forEach(c => c.checked = false);
+        document.querySelector('input[name="badge"][value=""]').checked = true;
+    }
+
+    // === SYNC LOGIC ===
+    async function syncIPA(force) {
+        const btn = document.getElementById(force ? 'forceSyncBtn' : 'syncBtn');
+        const status = document.getElementById('syncStatus');
+        const originContent = btn.innerHTML;
+        
+        btn.disabled = true;
+        btn.innerHTML = '<i data-lucide="loader" class="w-4 h-4 animate-spin"></i>';
+        lucide.createIcons();
+        status.className = 'mt-3 text-xs text-center font-medium h-4 text-gray-500';
+        status.textContent = 'Đang đồng bộ...';
+
+        try {
+            const res = await fetch('/api/sync-ipa', { method: 'POST' });
+            const data = await res.json();
+            
+            if(res.ok) {
+                status.className = 'mt-3 text-xs text-center font-bold h-4 text-green-500';
+                status.textContent = `✅ Thành công! +${data.stats?.new || 0} App mới`;
+            } else {
+                status.className = 'mt-3 text-xs text-center font-bold h-4 text-red-500';
+                status.textContent = '❌ Lỗi: ' + (data.error || 'Unknown');
+            }
+        } catch(e) {
+            status.className = 'mt-3 text-xs text-center font-bold h-4 text-red-500';
+            status.textContent = '❌ Lỗi kết nối';
+        } finally {
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.innerHTML = originContent;
+                lucide.createIcons();
+            }, 1000);
+        }
+    }
+
+    // INIT
+    checkAuth();
+    setFormType('ipa');
+    lucide.createIcons();
+  </script>
+
+  <script>
+  (function(){
+    const btnRefresh = document.getElementById('btnRefresh');
+    const filterInput = document.getElementById('filterInput');
+    const fileListEl = document.getElementById('fileList');
+    const btnNewFile = document.getElementById('btnNewFile');
+    const filePathEl = document.getElementById('filePath');
+    const fileContentEl = document.getElementById('fileContent');
+    const fileImageEl = document.getElementById('fileImage');
+    const imagePreview = document.getElementById('imagePreview');
+    const commitMsgEl = document.getElementById('commitMsg');
+    const btnSaveFile = document.getElementById('btnSaveFile');
+    const editorStatus = document.getElementById('editorStatus');
+
+    let cachedFiles = [];
+
+    async function fetchList(){
+      editorStatus.textContent = 'Loading file list...';
+      try{
+        const res = await fetch('/dashboard/api/list', { method: 'POST', credentials: 'same-origin', headers: {'Content-Type':'application/json'}, body: JSON.stringify({}) });
+        const d = await res.json();
+        if(!res.ok) throw new Error(d.error || 'Failed to load');
+        cachedFiles = d.files || [];
+        renderFileList();
+        editorStatus.textContent = `Loaded ${cachedFiles.length} files`;
+      } catch(e){ editorStatus.textContent = 'Error loading files: ' + e.message; }
+    }
+
+    function renderFileList(){
+      const q = (filterInput.value || '').trim().toLowerCase();
+      fileListEl.innerHTML = '';
+      const list = cachedFiles.filter(f => !q || f.path.toLowerCase().includes(q));
+      if(list.length === 0){ fileListEl.innerHTML = '<div class="text-sm text-gray-500">No files</div>'; return; }
+      list.forEach(f => {
+        const el = document.createElement('div');
+        el.className = 'flex items-center justify-between p-2 rounded hover:bg-gray-100 dark:hover:bg-white/5 cursor-pointer';
+        el.innerHTML = `<div class="truncate">${f.path}</div><div class="flex gap-2"><button class="px-2 py-1 text-xs bg-brand text-white rounded">Open</button></div>`;
+        el.querySelector('button').addEventListener('click', e => { e.stopPropagation(); openFile(f.path); });
+        el.addEventListener('click', () => openFile(f.path));
+        fileListEl.appendChild(el);
+      });
+    }
+
+    function openFile(path){
+      const found = cachedFiles.find(f => f.path === path);
+      filePathEl.value = path;
+      fileContentEl.value = found && typeof found.content === 'string' ? found.content : '';
+      if(found && found.content === undefined){
+        editorStatus.textContent = 'Fetching file content...';
+        fetchList().then(()=>{
+          const f2 = cachedFiles.find(x=>x.path===path);
+          fileContentEl.value = f2 && f2.content ? f2.content : '';
+          editorStatus.textContent = 'Loaded file';
+        });
+      } else {
+        editorStatus.textContent = 'Loaded file';
+      }
+
+      if(/\.(png|jpg|jpeg|gif|webp)$/i.test(path)){
+        imagePreview.src = `/raw/${path}`;
+        fileImageEl.value = imagePreview.src;
+      } else {
+        const m = fileContentEl.value.match(/https?:\/\/[^\s'"<>]+\.(png|jpg|jpeg|gif|webp)/i);
+        if(m){ fileImageEl.value = m[0]; imagePreview.src = m[0]; }
+      }
+    }
+
+    btnRefresh.addEventListener('click', fetchList);
+    filterInput.addEventListener('input', renderFileList);
+    btnNewFile.addEventListener('click', ()=>{ filePathEl.value = 'new-file.txt'; fileContentEl.value = ''; fileImageEl.value = ''; imagePreview.src = 'https://placehold.co/120'; });
+    fileImageEl.addEventListener('input', ()=> { imagePreview.src = fileImageEl.value || 'https://placehold.co/120'; });
+
+    btnSaveFile.addEventListener('click', async ()=>{
+      const path = (filePathEl.value || '').trim();
+      const content = fileContentEl.value || '';
+      const message = (commitMsgEl.value || '').trim() || `Update ${path} via dashboard`;
+      if(!path){ editorStatus.textContent = 'Please enter a path'; return; }
+      btnSaveFile.disabled = true;
+      editorStatus.textContent = 'Saving...';
+      try{
+        const res = await fetch('/dashboard/api/update', { method: 'POST', credentials: 'same-origin', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ path, content, message }) });
+        const d = await res.json();
+        if(!res.ok) throw new Error(d.error || 'Save failed');
+        editorStatus.innerHTML = 'Saved ✓ ' + (d.commitUrl ? `<a href="${d.commitUrl}" target="_blank">View</a>` : '');
+        await fetchList();
+      } catch(e){ editorStatus.textContent = 'Save error: ' + e.message; }
+      finally { btnSaveFile.disabled = false; }
+    });
+
+    // initial
+    fetchList();
+  })();
+  </script>
+</body>
+</html>
